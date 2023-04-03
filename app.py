@@ -2,6 +2,7 @@
 import os
 import gspread
 import requests
+import funcoes_concursos
 from flask import Flask, request
 from oauth2client.service_account import ServiceAccountCredentials
 from tchan import ChannelScraper
@@ -19,7 +20,7 @@ api = gspread.authorize(conta)
 planilha = api.open_by_key("1ZDyxhXlCtCjMbyKvYmMt_8jAKN5JSoZ7x3MqlnoyzAM")
 sheet = planilha.worksheet("Sheet1")
 
-##configurando o flask
+##configurando o flask e preparando o site
 app = Flask(__name__)
 
 menu = """
@@ -40,9 +41,10 @@ def contato():
 
 @app.route("/concuros")
 def concursos():
+  return menu + mensagem_bot
 
-_____________
 
+#Resposta telegram
 
 @app.route("/telegram-bot", methods=["POST"])
 def telegram_bot():
@@ -54,17 +56,10 @@ def telegram_bot():
   if message.lower().strip() in lista_entrada:
     nova_mensagem = {"chat_id" : chat_id, "text" : "Oi, seja muito bem-vindo(a) ao Bot do Concurso Público do site PCI Concursos! \n Se você quiser saber quantos concursos e quantas vagas estão abertos hoje, digite 1
   elif message == "1":
-     nova_mensagem = {"chat_id" : chat_id, "text" : f'{texto_CPI} \n\n Digite "0" para voltar ao menu inicial.'}
+     nova_mensagem = {"chat_id" : chat_id, "text" : f'{mensagem_bot}'
   elif message.lower().strip() in lista_saida:
      nova_mensagem = {"chat_id" : chat_id, "text" : "Que isso! Até a próxima :)"}
   else:
     nova_mensagem = {"chat_id" : chat_id, "text" : "Não entendi. Escreva 'oi' ou 'olá' para ver as instruções."}
   requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
   return "ok"
-
-
-
-
-
-
-

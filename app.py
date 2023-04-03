@@ -44,12 +44,6 @@ def sobre():
 def contato():
   return menu + "Para me contatar, pode acessar meu github: https://github.com/thamatos ou chamar no e-mail: thais.matos.pinheiro@alumni.usp.br"
 
-@app.route("/concuros")
-def concursos():
-  return menu + mensagem_bot
-
-
-
 ##função pra raspar os concursos
 
 def raspa_concursos():
@@ -107,7 +101,12 @@ raspagem = raspa_concursos()
 
 #função pra automatizar o texto
 
-def automatiza_texto():
+
+
+mensagem_bot = automatiza_texto()
+
+@app.route("/concuros")
+def concursos():
   tabela = raspagem
   tabela['Vagas'] =  tabela['Vagas'].astype(int)
   data_true_false =  tabela["Data_abertura"] == ' '
@@ -116,9 +115,7 @@ def automatiza_texto():
   concursos_abertos =len(df_abertos)
   soma_vagas = df_abertos['Vagas'].sum()
   mensagem_bot = f'Pelo menos {concursos_abertos} concursos públicos estão com inscrições abertas no site PCI Concursos. Juntos, eles oferecem {soma_vagas} vagas. Veja mais nos links abaixo: {tabela["Link"]}'
-  return(mensagem_bot)
-
-mensagem_bot = automatiza_texto()
+  return menu + mensagem_bot
 
 
 #Resposta telegram

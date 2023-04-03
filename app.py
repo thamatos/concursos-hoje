@@ -1,3 +1,4 @@
+##imports de bibliotecas
 import os
 import gspread
 import requests
@@ -5,9 +6,11 @@ from flask import Flask, request
 from oauth2client.service_account import ServiceAccountCredentials
 from tchan import ChannelScraper
 
+## preparando a integração com o telegram
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
 
+##preparando a integração com o google sheets
 GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
 with open("credenciais.json", mode = "w") as fobj:
   fobj.write(GOOGLE_SHEETS_CREDENTIALS)
@@ -16,82 +19,52 @@ api = gspread.authorize(conta)
 planilha = api.open_by_key("1ZDyxhXlCtCjMbyKvYmMt_8jAKN5JSoZ7x3MqlnoyzAM")
 sheet = planilha.worksheet("Sheet1")
 
+##configurando o flask
 app = Flask(__name__)
 
-def ultimas_promocoes():
-  scraper = ChannelScraper()
-  contador = 0
-  resultado = []
-  for message in scraper.messages("promocoeseachadinhos"):
-    contador += 1
-    texto = message.text.strip().splitlines()[0]
-    resultado.append(f"{message.created_at} {texto}")
-    if contador == 10:
-      return resultado
-
 menu = """
-<a href="/">Página inicial</a> |  <a href="/promocoes">PROMOÇÕES</a> | <a href="/sobre">Sobre</a> | <a href="/contato">Contato</a>
-<br>
+<center><a href="/">Página inicial</a> |  <a href="/concursos">Concursos Abertos</a> | <a href="/sobre">Sobre</a> | <a href="/contato">Contato</a></center>
 """
 
 @app.route("/")
 def index():
-  return menu + "Olá, mundo! Esse é meu site. (Thaís Matos)"
+  return menu
 
 @app.route("/sobre")
 def sobre():
-  return menu + "Aqui vai o conteúdo da página Sobre"
+  return menu + "Site desenvolvido para a disciplina de Algoritmos de Automação do Master de Jornalismo de Dados, Automação e Data storytelling do Insper. "
 
 @app.route("/contato")
 def contato():
-  return menu + "Aqui vai o conteúdo da página Contato"
+  return menu + "Para me contatar, pode acessar meu github: https://github.com/thamatos ou chamar no e-mail: thais.matos.pinheiro@alumni.usp.br"
 
-@app.route("/promocoes")
-def promocoes():
-  conteudo = menu + """
-  Encontrei as seguintes promoções no <a href="https://t.me/promocoeseachadinhos">@promocoeseachadinhos</a>:
-  <br>
-  <ul>
-  """
-  for promocao in ultimas_promocoes():
-    conteudo += f"<li>{promocao}</li>"
-  return conteudo + "</ul>"
+@app.route("/concuros")
+def concursos():
 
+_____________
 
-@app.route("/promocoes2")
-def promocoes2():
-  conteudo = menu + """
-  Encontrei as seguintes promoções no <a href="https://t.me/promocoeseachadinhos">@promocoeseachadinhos</a>:
-  <br>
-  <ul>
-  """
-  scraper = ChannelScraper()
-  contador = 0
-  for message in scraper.messages("promocoeseachadinhos"):
-    contador += 1
-    texto = message.text.strip().splitlines()[0]
-    conteudo += f"<li>{message.created_at} {texto}</li>"
-    if contador == 10:
-      break
-  return conteudo + "</ul>"
-
-@app.route("/dedoduro")
-def dedoduro():
-  mensagem = {"chat_id": TELEGRAM_ADMIN_ID, "text": "Alguém acessou a página dedo duro!"}
-  requests.post(f"https://api.telegram.org/bot{TELEGRAM_API_KEY}/sendMessage", data=mensagem)
-  return "Mensagem enviada."
-
-@app.route("/dedoduro2")
-def dedoduro2():
-  sheet.append_row(["Thaís", "Matos", "a partir do Flask"])
-  return "Planilha escrita!"
 
 @app.route("/telegram-bot", methods=["POST"])
 def telegram_bot():
   update = request.json
   chat_id = update["message"]["chat"]["id"]
   message = update["message"]["text"]
-  nova_mensagem = {"chat_id": chat_id, "text": message}
+  lista_entrada = ["/start", "oi", "ola", "olá", "bom dia", "boa tarde", "boa noite"]
+  lista_saida = ["obrigado", "obrigada", "valeu", "muito obrigado", "muito obrigada"]
+  if message.lower().strip() in lista_entrada:
+    nova_mensagem = {"chat_id" : chat_id, "text" : "Oi, seja muito bem-vindo(a) ao Bot do Concurso Público do site PCI Concursos! \n Se você quiser saber quantos concursos e quantas vagas estão abertos hoje, digite 1
+  elif message == "1":
+     nova_mensagem = {"chat_id" : chat_id, "text" : f'{texto_CPI} \n\n Digite "0" para voltar ao menu inicial.'}
+  elif message.lower().strip() in lista_saida:
+     nova_mensagem = {"chat_id" : chat_id, "text" : "Que isso! Até a próxima :)"}
+  else:
+    nova_mensagem = {"chat_id" : chat_id, "text" : "Não entendi. Escreva 'oi' ou 'olá' para ver as instruções."}
   requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
   return "ok"
+
+
+
+
+
+
 

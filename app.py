@@ -56,7 +56,7 @@ def telegram_bot():
   
   if message.lower().strip() in lista_entrada:
     nova_mensagem = {"chat_id" : chat_id, "text" : "Oi, seja muito bem-vindo(a) ao Bot do Concurso Público do site PCI Concursos! \n Se você quiser saber quantos concursos e quantas vagas estão abertos hoje, digite 1}"
-  elif message == "1":
+  elif message = "1":
      nova_mensagem = {"chat_id" : chat_id, "text" : f'{mensagem_bot}'
   elif message.lower().strip() in lista_saida:
      nova_mensagem = {"chat_id" : chat_id, "text" : "Que isso! Até a próxima :)"}

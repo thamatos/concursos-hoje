@@ -53,6 +53,7 @@ def telegram_bot():
   message = update["message"]["text"]
   lista_entrada = ["/start", "oi", "ola", "olá", "bom dia", "boa tarde", "boa noite"]
   lista_saida = ["obrigado", "obrigada", "valeu", "muito obrigado", "muito obrigada"]
+  mensagem_bot = automatiza_texto()
   
   if message.lower().strip() in lista_entrada:
     nova_mensagem = {"chat_id" : chat_id, "text" : "Oi, seja muito bem-vindo(a) ao Bot do Concurso Público do site PCI Concursos! \n Se você quiser saber quantos concursos e quantas vagas estão abertos hoje, digite 1"}
@@ -63,4 +64,5 @@ def telegram_bot():
   else:
     nova_mensagem = {"chat_id" : chat_id, "text" : "Não entendi. Escreva 'oi' ou 'olá' para ver as instruções."}
   requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
+  
   return "ok"

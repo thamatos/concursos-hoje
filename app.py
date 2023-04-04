@@ -57,7 +57,7 @@ mensagem_bot = f'Obrigada por acessar o bot dos concursos. {texto}'
 def concursos():
   raspagem = raspa_concursos()
   texto = automatiza_texto()
-  return(texto)
+  return menu + texto
 
 ## Cria a resposta do Telegram
 

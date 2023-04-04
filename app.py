@@ -50,23 +50,13 @@ from funcoes_concursos import raspa_concursos
 from funcoes_concursos import automatiza_texto
 texto = automatiza_texto()
 mensagem_bot = f'Obrigada por acessar o bot dos concursos. {texto}'
+mensagem_site = f'Obrigada por acessar o site dos concursos. {texto}'
 
 ##Cria página com o resultado da raspagem dos concursos
 
 @app.route("/concursos")
 def concursos():
- mensagem_site: f'''
- <html>
- <head>
-	<title>Bot dos concursos</title>
-</head>
-<body>
-	Obrigada por acessar o site dos concursos.
-  {texto}
-</body>
-</html>
-'''
- return menu + mensagem_site
+  return menu + mensagem_site
 
 ## Cria a resposta do Telegram
 

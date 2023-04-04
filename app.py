@@ -66,7 +66,7 @@ def concursos():
 </body>
 </html>
 '''
-  return menu + mensagem_site
+ return menu + mensagem_site
 
 ## Cria a resposta do Telegram
 

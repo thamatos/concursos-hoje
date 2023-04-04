@@ -56,6 +56,17 @@ mensagem_site = f'Obrigada por acessar o site dos concursos. {texto}'
 
 @app.route("/concursos")
 def concursos():
+ mensagem_site: f'''
+ <html>
+ <head>
+	<title>Bot dos concursos</title>
+</head>
+<body>
+	Obrigada por acessar o site dos concursos.
+  {texto}
+</body>
+</html>
+'''
   return menu + mensagem_site
 
 ## Cria a resposta do Telegram

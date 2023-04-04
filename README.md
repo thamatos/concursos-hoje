@@ -10,3 +10,4 @@ Esse repositório é um site para a aula de Algoritmos de Automação do MJD 202
 - Criar uma *service account* do Google Cloud
 - Criar o *token* do seu robô no Telegram
 - Configurar o 'setwebhook' do Telegram
+- Usar o Python 3.11.2

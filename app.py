@@ -50,7 +50,6 @@ from funcoes_concursos import raspa_concursos
 from funcoes_concursos import automatiza_texto
 texto = automatiza_texto()
 mensagem_bot = f'Obrigada por acessar o bot dos concursos. {texto}'
-mensagem_site = f'Obrigada por acessar o site dos concursos. {texto}'
 
 ##Cria página com o resultado da raspagem dos concursos
 

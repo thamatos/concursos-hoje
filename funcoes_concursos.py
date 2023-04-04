@@ -72,5 +72,6 @@ def automatiza_texto():
   df_abertos =  tabela.query(f'Aberto == True')
   concursos_abertos =len(df_abertos)
   soma_vagas = df_abertos['Vagas'].sum()
-  mensagem_bot = f'Pelo menos {concursos_abertos} concursos públicos estão com inscrições abertas no site PCI Concursos. Juntos, eles oferecem {soma_vagas} vagas. Veja mais nos links abaixo: {tabela["Link"]}'
-  return(mensagem_bot)
+  mensagem_bot = f'Pelo menos {concursos_abertos} concursos públicos estão com inscrições abertas no site PCI Concursos. Juntos, eles oferecem {soma_vagas} vagas.'
+  lista_mensagem = f'Veja mais nos links abaixo: {tabela["Link"]}'
+  return(mensagem_bot + lista_mensagem)

@@ -30,7 +30,7 @@ sheet = planilha.worksheet("Sheet1")
 app = Flask(__name__)
 
 menu = """
-<center><a href="/">Página inicial</a> |  <a href="/concursos">Concursos Abertos</a> | <a href="/sobre">Sobre</a> | <a href="/contato">Contato</a></center>
+<center><a href="/">Página inicial</a> | <a href="/concursos">Concursos</a> | <a href="/sobre">Sobre</a> | <a href="/contato">Contato</a></center>
 """
 
 @app.route("/")

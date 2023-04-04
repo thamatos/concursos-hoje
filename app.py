@@ -54,7 +54,7 @@ mensagem_site = f'Obrigada por acessar o site dos concursos. {texto}'
 
 ##Cria página com o resultado da raspagem dos concursos
 
-@app.route("/concuros")
+@app.route("/concursos")
 def concursos():
   return menu + mensagem_site
 

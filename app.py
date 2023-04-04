@@ -55,7 +55,7 @@ mensagem_site = f'Obrigada por acessar o site dos concursos. {texto}'
 ##Cria página com o resultado da raspagem dos concursos
 
 @app.route("/concuros")
-def concuros():
+def concursos():
   return menu + mensagem_site
 
 ## Cria a resposta do Telegram

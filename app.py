@@ -55,9 +55,7 @@ mensagem_bot = f'Obrigada por acessar o bot dos concursos. {texto}'
 
 @app.route("/concuros")
 def concursos():
-  raspagem = raspa_concursos()
-  texto = automatiza_texto()
-  return menu + texto
+  return menu + mensagem_bot
 
 ## Cria a resposta do Telegram
 

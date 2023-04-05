@@ -47,16 +47,17 @@ def contato():
 
 ## importar as funções de raspar os concursos e automatizar texto
 from funcoes_concursos import raspa_concursos
-from funcoes_concursos import automatiza_texto
-texto = automatiza_texto()
-mensagem_bot = f'Obrigada por acessar o bot dos concursos. {texto}'
+from funcoes_concursos import automatiza_bot
+from funcoes_concursos import automatiza_site
+texto_bot = automatiza_bot()
+mensagem_site = automatiza_site()
+mensagem_bot = f'Obrigada por acessar o bot dos concursos. {texto_bot}'
 
 ##Cria página com o resultado da raspagem dos concursos
 
 @app.route("/concursos")
 def concursos():
-  mensagem_site = f'Obrigada por acessar o site dos concursos. {texto}'
-  return menu + render_template('concursos.html', mensagem_site = mensagem_site)
+  return menu + mensagem_site
 
 ## Cria a resposta do Telegram
 

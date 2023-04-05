@@ -17,6 +17,7 @@ from datetime import date
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
 
+
 ##preparando a integração com o google sheets
 GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
 with open("credenciais.json", mode = "w") as fobj:
@@ -25,6 +26,7 @@ conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
 api = gspread.authorize(conta)
 planilha = api.open_by_key("1ZDyxhXlCtCjMbyKvYmMt_8jAKN5JSoZ7x3MqlnoyzAM")
 sheet = planilha.worksheet("Sheet1")
+
 
 ##configurando o flask e preparando o site
 app = Flask(__name__)
@@ -44,6 +46,7 @@ def sobre():
 @app.route("/contato")
 def contato():
   return menu + "Para me contatar, pode acessar meu github: https://github.com/thamatos ou chamar no e-mail: thais.matos.pinheiro@alumni.usp.br"
+
 
 ## importar as funções de raspar os concursos e automatizar texto
 from funcoes_concursos import raspa_concursos

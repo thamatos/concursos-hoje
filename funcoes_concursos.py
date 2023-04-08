@@ -55,26 +55,48 @@ def raspa_concursos():
 
   dict_tabelaconcursos = {'Órgão': lista_orgao, 'Cargo': lista_cargo, 'Data_abertura': lista_data_abertura, 'Data_encerramento': lista_data_encerramento, 'Vagas' : lista_vagas, 'Salário' : lista_salario, 'Escolaridade': lista_escolaridade, 'Estado': lista_estado, 'Link': lista_link}
   df_concursos = pd.DataFrame(data = dict_tabelaconcursos)
-
-  df_concursos2 = df_concursos[~df_concursos["Cargo"].str.contains('Estagiário')]
   data = date.today()
+  return df_concursos
 
-  return df_concursos2
+
+#função pra automatizar o texto do bot
+
+## Definindo os dataframes a partir da raspagem
+tabela = raspa_concursos()
+tabela['Vagas'] =  tabela['Vagas'].astype(int)
+data_true_false =  tabela["Data_abertura"] == ' '
+tabela['Aberto'] = data_true_false
+df_abertos =  tabela.query(f'Aberto == True')
+concursos_abertos = df_abertos.query('Cargo != "Estagiário" & Vagas != 0')
+cadastro_reserva = df_abertos.query('Cargo != "Estagiário" & Vagas == 0')
+estagios = df_abertos.query('Cargo == "Estagiário"')
+num_reserva = len(cadastro_reserva)
+num_abertos = len(concursos_abertos)
+num_estagios = len(estagios)
+vagas_abertos = concursos_abertos['Vagas'].sum() 
+estagios_abertos = estagios['Vagas'].sum()
+links_abertos = concursos_abertos["Link"].reset_index(drop=True)
+links_reserva = cadastro_reserva["Link"].reset_index(drop=True)
+links_estagios = estagios["Link"].reset_index(drop=True)
+
+def automatiza_bot1():
+  mensagem_bot1 = f'Pelo menos {num_abertos} concursos públicos estão com inscrições abertas hoje no site PCI Concursos. Juntos, eles oferecem {vagas_abertos} vagas.'
+  lista_mensagem1 = f'Veja os concursos abertos nos links abaixo: {links_abertos}'
+  return(mensagem_bot1 + lista_mensagem1)
+
+def automatiza_bot2():
+  mensagem_bot2 = f'Pelo menos {num_reserva} editais estão com inscrições abertas para vagas de cadastro reserva hoje no site PCI Concursos.'
+  lista_mensagem2 = f'Veja os concursos abertos nos links abaixo: {links_reserva}'
+  return(mensagem_bot2 + lista_mensagem2)
+
+def automatiza_bot3():
+  mensagem_bot3 = f'Pelo menos {num_estagios} editais estão com inscrições abertas para estagiários hoje no site PCI Concursos. Juntos, eles oferecem {estagios_abertos} vagas.'
+  lista_mensagem3 = f'Veja os concursos abertos nos links abaixo: {links_estagios}'
+  return(mensagem_bot3 + lista_mensagem3)
 
 
-#função pra automatizar o texto
 
-def automatiza_bot():
-  tabela = raspa_concursos()
-  tabela['Vagas'] =  tabela['Vagas'].astype(int)
-  data_true_false =  tabela["Data_abertura"] == ' '
-  tabela['Aberto'] = data_true_false
-  df_abertos =  tabela.query(f'Aberto == True')
-  concursos_abertos =len(df_abertos)
-  soma_vagas = df_abertos['Vagas'].sum()
-  mensagem_bot = f'Pelo menos {concursos_abertos} concursos públicos estão com inscrições abertas no site PCI Concursos. Juntos, eles oferecem {soma_vagas} vagas.'
-  lista_mensagem = f'Veja mais nos links abaixo: {df_abertos["Link"]}'
-  return(mensagem_bot + lista_mensagem)
+### Função para automatizar o texto do site
 
 def automatiza_site():
   tabela = raspa_concursos()

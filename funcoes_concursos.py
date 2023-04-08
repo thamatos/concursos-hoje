@@ -96,27 +96,3 @@ def automatiza_bot3():
 
 
 
-### Função para automatizar o texto do site
-
-def automatiza_site():
-  tabela = raspa_concursos()
-  tabela['Vagas'] =  tabela['Vagas'].astype(int)
-  data_true_false =  tabela["Data_abertura"] == ' '
-  tabela['Aberto'] = data_true_false
-  df_abertos =  tabela.query(f'Aberto == True')
-  concursos_abertos =len(df_abertos)
-  soma_vagas = df_abertos['Vagas'].sum()
-  lista = df_abertos["Link"].tolist()
-  html = ''
-  for elemento in lista:
-    html += '<a href="' + elemento + '">' + elemento + '</a><br>'
-    mensagem_site = f'''
-    <h1>Bot dos concursos</h1>
-    <p>
-      Pelo menos {concursos_abertos} concursos públicos estão com inscrições abertas no site PCI Concursos. Juntos, eles oferecem {soma_vagas} vagas. Veja mais nos links abaixo:.
-      <br>
-      {html}   
-    </p>
-    '''
-  return(mensagem_site)
-

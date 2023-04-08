@@ -38,8 +38,8 @@ def index():
 
 @app.route("/concursos")
 def concursos():
-  texto_site = abertos_site()
-  return render_template('concursos.html', dados = texto_site)
+  mensagem_site = f'Obrigada por acessar o site dos concursos. {texto_site}'
+  return menu + render_template('concursos.html', mensagem_site = mensagem_site)
 
 
 ## Criar a resposta do Telegram

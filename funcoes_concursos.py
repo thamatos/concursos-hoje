@@ -94,8 +94,9 @@ def automatiza_bot3():
   lista_mensagem3 = f'Veja os concursos abertos nos links abaixo: {links_estagios}'
   return(mensagem_bot3 + lista_mensagem3)
 
-### Função para automatizar o texto do site
+### Criar páginas do site
 
+## Página de concursos abertos
 def automatiza_site():
   lista = concursos_abertos["Link"].tolist()
   html = ''
@@ -110,3 +111,36 @@ def automatiza_site():
     </p>
     '''
   return(mensagem_site)
+
+## Página de cadastro reserva
+def automatiza_reserva():
+  lista = links_reserva.tolist()
+  html = ''
+  for elemento in lista:
+    html += '<a href="' + elemento + '">' + elemento + '</a><br>'
+    mensagem_reserva = f'''
+    <h1>Bot dos concursos</h1>
+    <p>
+      Pelo menos {num_reserva} concursos públicos estão com inscrições abertas para cadastro reserva no site PCI Concursos. Veja mais nos links abaixo:.
+      <br>
+      {html}   
+    </p>
+    '''
+  return(mensagem_reserva)
+
+
+## Página de estágios
+def automatiza_estagio():
+  lista = links_reserva.tolist()
+  html = ''
+  for elemento in lista:
+    html += '<a href="' + elemento + '">' + elemento + '</a><br>'
+    mensagem_estagio = f'''
+    <h1>Bot dos concursos</h1>
+    <p>
+      Pelo menos {num_estagios} editais estão com inscrições abertas para {estagios_abertos} vagas de estágio no site PCI Concursos. Veja mais nos links abaixo:.
+      <br>
+      {html}   
+    </p>
+    '''
+  return(mensagem_estagio)

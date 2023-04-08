@@ -103,7 +103,7 @@ def automatiza_site():
     for elemento in lista:
         html += '<a href="' + elemento + '">' + elemento + '</a><br>'
     mensagem_site = f'''
-    <h1>Bot dos concursos</h1>
+    <h1>Concursos com inscrições abertas</h1>
     <p>
         Pelo menos {num_abertos} concursos públicos estão com inscrições abertas no site PCI Concursos. Juntos, eles oferecem {vagas_abertos} vagas. Veja mais nos links abaixo:
         <br>
@@ -119,7 +119,7 @@ def automatiza_reserva():
   for elemento in lista:
     html += '<a href="' + elemento + '">' + elemento + '</a><br>'
   mensagem_reserva = f'''
-  <h1>Bot dos concursos</h1>
+  <h1>Editais com inscrições para cadastro reserva</h1>
   <p>
       Pelo menos {num_reserva} concursos públicos estão com inscrições abertas para cadastro reserva no site PCI Concursos. Veja mais nos links abaixo:.
       <br>
@@ -136,7 +136,7 @@ def automatiza_estagio():
   for elemento in lista:
     html += '<a href="' + elemento + '">' + elemento + '</a><br>'
   mensagem_estagio = f'''
-  <h1>Bot dos concursos</h1>
+  <h1>Editais com vagas de estágio</h1>
     <p>
       Pelo menos {num_estagios} editais estão com inscrições abertas para {estagios_abertos} vagas de estágio no site PCI Concursos. Veja mais nos links abaixo:.
       <br>

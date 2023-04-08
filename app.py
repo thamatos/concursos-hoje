@@ -27,12 +27,12 @@ TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
 app = Flask(__name__)
 
 menu = """
-<center><a href="/">Página inicial</a> | <a href="/concursos">Concursos Abertos</a> | <a href="/reserva">Cadastro Reserva</a> | <a href="/estagio">Vagas de Estágio</a>    </center>
+<center><a href="/">Volte ao menu</a> | <a href="/concursos">Concursos Abertos</a> | <a href="/reserva">Cadastro Reserva</a> | <a href="/estagio">Vagas de Estágio</a>    </center>
 """
 
 @app.route("/")
 def index():
-  return menu
+  return render_template('inicio.html')
 
 
 @app.route("/concursos")

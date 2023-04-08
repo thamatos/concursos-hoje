@@ -49,12 +49,11 @@ def contato():
 
 
 ## importar as funções de raspar os concursos e automatizar texto
-from funcoes_concursos import raspa_concursos
-from funcoes_concursos import automatiza_bot
-from funcoes_concursos import automatiza_site
-texto_bot = automatiza_bot()
+from funcoes_concursos import raspa_concursos, automatiza_bot1, automatiza_bot2, automatiza_bot3, automatiza_site
+mensagem_bot1 = automatiza_bot1()
+mensagem_bot2 = automatiza_bot2()
+mensagem_bot3 = automatiza_bot3()
 mensagem_site = automatiza_site()
-mensagem_bot = f'Obrigada por acessar o bot dos concursos. {texto_bot}'
 
 ##Cria página com o resultado da raspagem dos concursos
 
@@ -73,9 +72,13 @@ def telegram_bot():
   lista_saida = ["obrigado", "obrigada", "valeu", "muito obrigado", "muito obrigada"]
   nova_mensagem = ' '
   if message.lower().strip() in lista_entrada:
-    nova_mensagem = {"chat_id" : chat_id, "text" : "Oi, seja muito bem-vindo(a) ao Bot do Concurso Público do site PCI Concursos! \n Se você quiser saber quantos concursos e quantas vagas estão abertos hoje, digite 1"}
+    nova_mensagem = {"chat_id" : chat_id, "text" : "Oi, seja muito bem-vindo(a) ao Bot do Concurso Público do site PCI Concursos! \n Escolha uma das opções abaixo: \n Digite 1 para saber quantos concursos e quantas vagas estão abertos hoje; \n Digite 2 para saber quantos concursos oferecem cadastro reserva; \n Digite 3 para ver os editais de estágio abetos.”}
   elif message == "1":
-     nova_mensagem = {"chat_id" : chat_id, "text" : f'{mensagem_bot}'}
+     nova_mensagem = {"chat_id" : chat_id, "text" : f'{mensagem_bot1}'}
+  elif message == "2":
+     nova_mensagem = {"chat_id" : chat_id, "text" : f'{mensagem_bot_2}'}
+  elif message == "3":
+     nova_mensagem = {"chat_id" : chat_id, "text" : f'{mensagem_bot_3}'}
   elif message.lower().strip() in lista_saida:
      nova_mensagem = {"chat_id" : chat_id, "text" : "Que isso! Até a próxima :)"}
   else:
@@ -83,4 +86,3 @@ def telegram_bot():
   resposta = requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
   print(resposta.text)
   return "ok"
- 

@@ -32,7 +32,9 @@ menu = """
 
 @app.route("/")
 def index():
-  return render_template('inicio.html')
+  titulo = 'Concursos públicos'
+  texto = 'Veja as opções de editais com vagas abertas hoje:'
+  return render_template('inicio.html', titulo=titulo, texto=texto)
 
 
 @app.route("/concursos")

@@ -12,11 +12,16 @@ from bs4 import BeautifulSoup
 from pandas import DataFrame
 from datetime import date
 
+## importar as funções de raspar os concursos e automatizar texto
+from funcoes_concursos import raspa_concursos, automatiza_bot1, automatiza_bot2, automatiza_bot3, automatiza_site
+mensagem_bot1 = automatiza_bot1()
+mensagem_bot2 = automatiza_bot2()
+mensagem_bot3 = automatiza_bot3()
+mensagem_site = automatiza_site()
 
 ## preparando a integração com o telegram
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
-
 
 ##preparando a integração com o google sheets
 GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
@@ -32,36 +37,27 @@ sheet = planilha.worksheet("Sheet1")
 app = Flask(__name__)
 
 menu = """
-<center><a href="/">Página inicial</a> | <a href="/concursos">Concursos</a> | <a href="/sobre">Sobre</a> | <a href="/contato">Contato</a></center>
+<center><a href="/">Página inicial</a> | <a href="/concursos">Concursos Abertos</a> | <a href="/reserva">Cadastro Reserva</a> | <a href="/estagio">Vagas de Estágio</a></center>
 """
 
 @app.route("/")
 def index():
   return menu
 
-@app.route("/sobre")
-def sobre():
+@app.route("/reserva")
+def reserva():
   return menu + "Site desenvolvido para a disciplina de Algoritmos de Automação do Master de Jornalismo de Dados, Automação e Data storytelling do Insper. "
 
-@app.route("/contato")
-def contato():
-  return menu + "Para me contatar, pode acessar meu github: https://github.com/thamatos ou chamar no e-mail: thais.matos.pinheiro@alumni.usp.br"
-
-
-## importar as funções de raspar os concursos e automatizar texto
-from funcoes_concursos import raspa_concursos, automatiza_bot1, automatiza_bot2, automatiza_bot3, automatiza_site
-mensagem_bot1 = automatiza_bot1()
-mensagem_bot2 = automatiza_bot2()
-mensagem_bot3 = automatiza_bot3()
-mensagem_site = automatiza_site()
-
-##Cria página com o resultado da raspagem dos concursos
+@app.route("/estagio")
+def estagio():
+  return 
 
 @app.route("/concursos")
 def concursos():
-  return menu + mensagem_site
+  return 
 
-## Cria a resposta do Telegram
+
+## Criar a resposta do Telegram
 
 @app.route("/telegram-bot", methods=["POST"])
 def telegram_bot():
@@ -86,3 +82,11 @@ def telegram_bot():
   resposta = requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
   print(resposta.text)
   return "ok"
+
+
+
+
+
+
+
+

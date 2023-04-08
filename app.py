@@ -76,9 +76,9 @@ def telegram_bot():
   elif message == "1":
      nova_mensagem = {"chat_id" : chat_id, "text" : f'{mensagem_bot1}'}
   elif message == "2":
-     nova_mensagem = {"chat_id" : chat_id, "text" : f'{mensagem_bot_2}'}
+     nova_mensagem = {"chat_id" : chat_id, "text" : f'{mensagem_bot2}'}
   elif message == "3":
-     nova_mensagem = {"chat_id" : chat_id, "text" : f'{mensagem_bot_3}'}
+     nova_mensagem = {"chat_id" : chat_id, "text" : f'{mensagem_bot3}'}
   elif message.lower().strip() in lista_saida:
      nova_mensagem = {"chat_id" : chat_id, "text" : "Que isso! Até a próxima :)"}
   else:

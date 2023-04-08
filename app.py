@@ -13,11 +13,11 @@ from pandas import DataFrame
 from datetime import date
 
 ## importar as funções de raspar os concursos e automatizar texto
-from funcoes_concursos import raspa_concursos, automatiza_bot1, automatiza_bot2, automatiza_bot3, abertos_site
+from funcoes_concursos import raspa_concursos, automatiza_bot1, automatiza_bot2, automatiza_bot3, automatiza_site
 mensagem_bot1 = automatiza_bot1()
 mensagem_bot2 = automatiza_bot2()
 mensagem_bot3 = automatiza_bot3()
-texto_site = abertos_site()
+mensagem_site = automatiza_site()
 
 ## preparando a integração com o telegram
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
@@ -38,7 +38,7 @@ def index():
 
 @app.route("/concursos")
 def concursos():
-  mensagem_site = f'Obrigada por acessar o site dos concursos. {texto_site}'
+  mensagem_site = f'Obrigada por acessar o site dos concursos. {mensagem_site}'
   return menu + render_template('concursos.html', mensagem_site = mensagem_site)
 
 

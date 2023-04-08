@@ -98,19 +98,19 @@ def automatiza_bot3():
 
 ## Página de concursos abertos
 def automatiza_site():
-  lista = concursos_abertos["Link"].tolist()
-  html = ''
-  for elemento in lista:
-    html += '<a href="' + elemento + '">' + elemento + '</a><br>'
+    lista = concursos_abertos["Link"].tolist()
+    html = ''
+    for elemento in lista:
+        html += '<a href="' + elemento + '">' + elemento + '</a><br>'
     mensagem_site = f'''
     <h1>Bot dos concursos</h1>
     <p>
-      Pelo menos {num_abertos} concursos públicos estão com inscrições abertas no site PCI Concursos. Juntos, eles oferecem {vagas_abertos} vagas. Veja mais nos links abaixo:.
-      <br>
-      {html}   
+        Pelo menos {num_abertos} concursos públicos estão com inscrições abertas no site PCI Concursos. Juntos, eles oferecem {vagas_abertos} vagas. Veja mais nos links abaixo:
+        <br>
+        {html}
     </p>
     '''
-  return(mensagem_site)
+    return mensagem_site
 
 ## Página de cadastro reserva
 def automatiza_reserva():
@@ -118,29 +118,29 @@ def automatiza_reserva():
   html = ''
   for elemento in lista:
     html += '<a href="' + elemento + '">' + elemento + '</a><br>'
-    mensagem_reserva = f'''
-    <h1>Bot dos concursos</h1>
-    <p>
+  mensagem_reserva = f'''
+  <h1>Bot dos concursos</h1>
+  <p>
       Pelo menos {num_reserva} concursos públicos estão com inscrições abertas para cadastro reserva no site PCI Concursos. Veja mais nos links abaixo:.
       <br>
       {html}   
-    </p>
-    '''
+  </p>
+  '''
   return(mensagem_reserva)
 
 
 ## Página de estágios
 def automatiza_estagio():
-  lista = links_reserva.tolist()
+  lista = links_estagios.tolist()
   html = ''
   for elemento in lista:
     html += '<a href="' + elemento + '">' + elemento + '</a><br>'
-    mensagem_estagio = f'''
-    <h1>Bot dos concursos</h1>
+  mensagem_estagio = f'''
+  <h1>Bot dos concursos</h1>
     <p>
       Pelo menos {num_estagios} editais estão com inscrições abertas para {estagios_abertos} vagas de estágio no site PCI Concursos. Veja mais nos links abaixo:.
       <br>
       {html}   
-    </p>
-    '''
+  </p>
+  '''
   return(mensagem_estagio)

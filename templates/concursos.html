@@ -1,26 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Concursos abertos</title>
+    <title>Concursos Abertos</title>
 </head>
 <body>
-	<table>
-		<thead>
-			<tr>
-				<th>Órgão</th>
-				<th>Vagas</th>
-				<th>Salário</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for index, row in df.iterrows() %}
-			<tr>
-				<td>{{ row['Órgão'] }}</td>
-				<td>{{ row['Vagas'] }}</td>
-				<td>{{ row['Salário'] }}</td>
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+    <p>{{ texto_site }}</p>
 </body>
 </html>

@@ -94,5 +94,19 @@ def automatiza_bot3():
   lista_mensagem3 = f'Veja os concursos abertos nos links abaixo: {links_estagios}'
   return(mensagem_bot3 + lista_mensagem3)
 
+### Função para automatizar o texto do site
 
+def abertos_site():
+  lista = links_abertos.tolist()
+  html = ''
+  for elemento in lista:
+    html += '<a href="' + elemento + '">' + elemento + '</a><br>'
+    texto_site = f'''
+    <p>
+      Pelo menos {num_abertos} concursos públicos estão com inscrições abertas no site PCI Concursos hoje. Juntos, eles oferecem {vagas_abertos} vagas. Veja mais nos links abaixo:.
+      <br>
+      {html}   
+    </p>
+    '''
+  return(texto_site)
 

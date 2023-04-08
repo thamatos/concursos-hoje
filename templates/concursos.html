@@ -1,9 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bot dos concursos</title>
+	<title>Concursos abertos</title>
 </head>
 <body>
-    <p>{{ mensagem_site }}</p>
+	<table>
+		<thead>
+			<tr>
+				<th>Órgão</th>
+				<th>Vagas</th>
+				<th>Salário</th>
+                <th>Link</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for index, row in df.iterrows() %}
+			<tr>
+				<td>{{ row['Órgão'] }}</td>
+				<td>{{ row['Vagas'] }}</td>
+				<td>{{ row['Salário'] }}</td>
+                <td>{{ row['Link'] }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 </body>
 </html>

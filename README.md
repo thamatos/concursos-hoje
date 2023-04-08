@@ -1,4 +1,4 @@
-# site-teste2
+# Concursos hoje
 
 Esse repositório é um site para a aula de Algoritmos de Automação do MJD 2022-2023 do Insper. Ele possui:
 

@@ -1,4 +1,4 @@
-##imports de bibliotecas
+##importar as bibliotecas
 import os
 import gspread
 import requests
@@ -12,23 +12,22 @@ from bs4 import BeautifulSoup
 from pandas import DataFrame
 from datetime import date
 
-## importar as funções de raspar os concursos e automatizar texto
-from funcoes_concursos import raspa_concursos, automatiza_bot1, automatiza_bot2, automatiza_bot3, automatiza_site
+
+## importar as funções de raspar concursos e automatizar textos
+from funcoes_concursos import raspa_concursos, automatiza_bot1, automatiza_bot2, automatiza_bot3, automatiza_site, automatiza_reserva, automatiza_estagio
 mensagem_bot1 = automatiza_bot1()
 mensagem_bot2 = automatiza_bot2()
 mensagem_bot3 = automatiza_bot3()
-texto_site = automatiza_site()
 
 ## preparando a integração com o telegram
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
 
-
 ##configurando o flask e preparando o site
 app = Flask(__name__)
 
 menu = """
-<center><a href="/">Página inicial</a> | <a href="/concursos">Concursos Abertos</a></center>
+<center><a href="/">Página inicial</a> | <a href="/concursos">Concursos Abertos</a> | <a href="/reserva">Cadastro Reserva</a> | <a href="/estagio">Vagas de Estágio</a>    </center>
 """
 
 @app.route("/")
@@ -38,8 +37,18 @@ def index():
 
 @app.route("/concursos")
 def concursos():
-  mensagem_site = f'Obrigada por acessar o site dos concursos. {texto_site}'
-  return menu + render_template('concursos.html', mensagem_site = mensagem_site)
+  texto_site = automatiza_site()
+  return menu + render_template('concursos.html', dados=texto_site)
+
+@app.route("/reserva")
+def reserva():
+  texto_reserva = automatiza_reserva()
+  return render_template('reserva.html', dados=texto_reserva)
+
+@app.route("/estagio")
+def estagio():
+  texto_estagio = automatiza_estagio()
+  return render_template('estagio.html', dados=texto_estagio)
 
 
 ## Criar a resposta do Telegram

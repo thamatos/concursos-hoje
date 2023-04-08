@@ -43,12 +43,12 @@ def concursos():
 @app.route("/reserva")
 def reserva():
   texto_reserva = automatiza_reserva()
-  return render_template('concursos.html', dados=texto_reserva, titulo='Cadastro Reserva')
+  return menur + render_template('concursos.html', dados=texto_reserva, titulo='Cadastro Reserva')
 
 @app.route("/estagio")
 def estagio():
   texto_estagio = automatiza_estagio()
-  return render_template('concursos.html', dados=texto_estagio, titulo='Vagas de estágio')
+  return menu + render_template('concursos.html', dados=texto_estagio, titulo='Vagas de estágio')
 
 
 ## Criar a resposta do Telegram

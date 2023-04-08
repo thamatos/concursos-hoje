@@ -101,7 +101,7 @@ def abertos_site():
   html = ''
   for elemento in lista:
     html += '<a href="' + elemento + '">' + elemento + '</a><br>'
-    texto_site = f'''
+  texto_site = f'''
     <p>
       Pelo menos {num_abertos} concursos públicos estão com inscrições abertas no site PCI Concursos hoje. Juntos, eles oferecem {vagas_abertos} vagas. Veja mais nos links abaixo:.
       <br>

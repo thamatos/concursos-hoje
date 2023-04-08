@@ -37,24 +37,18 @@ sheet = planilha.worksheet("Sheet1")
 app = Flask(__name__)
 
 menu = """
-<center><a href="/">Página inicial</a> | <a href="/concursos">Concursos Abertos</a> | <a href="/reserva">Cadastro Reserva</a> | <a href="/estagio">Vagas de Estágio</a></center>
+<center><a href="/">Página inicial</a> | <a href="/concursos">Concursos Abertos</a></center>
 """
 
 @app.route("/")
 def index():
   return menu
 
-@app.route("/reserva")
-def reserva():
-  return menu + "Site desenvolvido para a disciplina de Algoritmos de Automação do Master de Jornalismo de Dados, Automação e Data storytelling do Insper. "
-
-@app.route("/estagio")
-def estagio():
-  return 
 
 @app.route("/concursos")
 def concursos():
-  return 
+  concursos = concursos_abertos
+  return render_template('concursos.html', df = concursos)
 
 
 ## Criar a resposta do Telegram

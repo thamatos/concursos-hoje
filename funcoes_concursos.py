@@ -104,7 +104,7 @@ def automatiza_site():
     mensagem_site = f'''
     <h1>Bot dos concursos</h1>
     <p>
-      Pelo menos {concursos_abertos} concursos públicos estão com inscrições abertas no site PCI Concursos. Juntos, eles oferecem {soma_vagas} vagas. Veja mais nos links abaixo:.
+      Pelo menos {num_abertos} concursos públicos estão com inscrições abertas no site PCI Concursos. Juntos, eles oferecem {vagas_abertos} vagas. Veja mais nos links abaixo:.
       <br>
       {html}   
     </p>

@@ -96,17 +96,17 @@ def automatiza_bot3():
 
 ### Função para automatizar o texto do site
 
-def abertos_site():
-  lista = links_abertos.tolist()
+def automatiza_site():
+  lista = concursos_abertos["Link"].tolist()
   html = ''
   for elemento in lista:
     html += '<a href="' + elemento + '">' + elemento + '</a><br>'
-  texto_site = f'''
+    mensagem_site = f'''
+    <h1>Bot dos concursos</h1>
     <p>
-      Pelo menos {num_abertos} concursos públicos estão com inscrições abertas no site PCI Concursos hoje. Juntos, eles oferecem {vagas_abertos} vagas. Veja mais nos links abaixo:.
+      Pelo menos {concursos_abertos} concursos públicos estão com inscrições abertas no site PCI Concursos. Juntos, eles oferecem {soma_vagas} vagas. Veja mais nos links abaixo:.
       <br>
       {html}   
     </p>
     '''
-  return(texto_site)
-
+  return(mensagem_site)

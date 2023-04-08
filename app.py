@@ -13,7 +13,7 @@ from pandas import DataFrame
 from datetime import date
 
 ## importar as funções de raspar os concursos e automatizar texto
-from funcoes_concursos import raspa_concursos, automatiza_bot1, automatiza_bot2, automatiza_bot3, automatiza_site
+from funcoes_concursos import raspa_concursos, automatiza_bot1, automatiza_bot2, automatiza_bot3
 mensagem_bot1 = automatiza_bot1()
 mensagem_bot2 = automatiza_bot2()
 mensagem_bot3 = automatiza_bot3()

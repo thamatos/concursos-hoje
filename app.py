@@ -43,7 +43,7 @@ def concursos():
 @app.route("/reserva")
 def reserva():
   texto_reserva = automatiza_reserva()
-  return menur + render_template('concursos.html', dados=texto_reserva, titulo='Cadastro Reserva')
+  return menu + render_template('concursos.html', dados=texto_reserva, titulo='Cadastro Reserva')
 
 @app.route("/estagio")
 def estagio():

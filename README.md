@@ -4,7 +4,7 @@ Esse repositório é um site para a aula de Algoritmos de Automação do MJD 202
 
 O repositório possui:
 - [Robô do Telegram](t.me/bothais_bot) que responde em tempo real
-- Site no [Render](https://site-teste-thamatos.onrender.com/) em Flaksk com concursos atualizados
+- Site no [Render](https://concursos-hoje-thamatos.onrender.com/) em Flaksk com concursos atualizados
 
 O site e o robô entregam a quantidade, a soma das vagas e os links de três categorias:
 - [Concursos abertos](https://site-teste-thamatos.onrender.com/concursos)

@@ -27,7 +27,6 @@ with open("credenciais.json", mode="w") as arquivo:
 conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
 api = gspread.authorize(conta)
 planilha = api.open_by_key("1iJivj5y2pbfHpMR9C2CuPXIqNT9Wxa6Q06VjDxuRraA")
-sheet = planilha.worksheet("final")
 
 ##configurando o flask e preparando o site
 app = Flask(__name__)
@@ -61,10 +60,8 @@ def estagio():
 ## telegram
 
 ## Função para adicionar o chat_id do usuário à planilha do Google Sheets
-usuarios = sheet.col_values(1)
-def adicionar_chat_id(chat_id):
-  if chat_id not in usuarios:
-    sheet.insert_row([chat_id], 2)
+sheet = planilha.worksheet("usuarios")
+todos_ids = sheet.findall(str(chat_id))
 
 ## Criar a resposta do Telegram
 @app.route("/telegram-bot", methods=["POST"])
@@ -87,11 +84,10 @@ def telegram_bot():
   elif message.lower().strip() in lista_saida:
     nova_mensagem = {"chat_id" : chat_id, "text" : "Que isso! Até a próxima :)"}
   elif message == "0":
-    adicionar_chat_id(chat_id)
-    if chat_id in usuarios:
-      nova_mensagem = {"chat_id" : chat_id, "text" : "Você já está cadastrado nossa lista de envios semanais :)"}
-    else:
-      nova_mensagem = {"chat_id" : chat_id, "text" : "Você foi adicionado à nossa lista de envios semanais :)"}  
+    if len(todos_ids) < 1:
+      sheet.append_row(chat_id)
+      nova_mensagem = {"chat_id" : chat_id, "text" : "Você foi adicionado à nossa lista de envios semanais :)"}
+    else: nova_mensagem = {"chat_id" : chat_id, "text" : "Você já está cadastrado nossa lista de envios semanais :)"}
   else:
     nova_mensagem = {"chat_id" : chat_id, "text" : "Não entendi. Escreva 'oi' ou 'olá' para ver as instruções."}
 

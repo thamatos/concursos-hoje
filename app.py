@@ -67,12 +67,6 @@ sheet = planilha.worksheet("usuarios")
 def telegram_bot():
   update = request.json
   chat_id = update["message"]["chat"]["id"]
-  usuarios = sheet.findall(str(chat_id)
-  def adiciona_usuario(chat_id):
-    if chat_id not in usuarios:
-      sheet.insert_row([chat_id], 2)
-    else:
-      pass
   message = update["message"]["text"]
   lista_entrada = ["/start", "oi", "ola", "olá", "bom dia", "boa tarde", "boa noite"]
   lista_saida = ["obrigado", "obrigada", "valeu", "muito obrigado", "muito obrigada"]
@@ -88,12 +82,13 @@ def telegram_bot():
     nova_mensagem = {"chat_id" : chat_id, "text" : f'{mensagem_bot3}'}
   elif message.lower().strip() in lista_saida:
     nova_mensagem = {"chat_id" : chat_id, "text" : "Que isso! Até a próxima :)"}
-  elif message == "0":
-    adiciona_usuario(chat_id)
-    if chat_id not in usuarios:
-      nova_mensagem = {"chat_id" : chat_id, "text" : "Você foi adicionado à nossa lista de envios semanais :)"}
-    else: 
-       nova_mensagem = {"chat_id" : chat_id, "text" : "Você já está cadastrado nossa lista de envios semanais :)"}  
+  elif message == "0"
+    usuarios = sheet.findall(str(chat_id))
+    if len(usuarios) >= 1:
+      resposta = "Você já está cadastrado nossa lista de envios semanais :)"
+      sheet.append_row(chat_id)
+     else: 
+      resposta = "Você foi adicionado à nossa lista de envios semanais :)" 
   else:
     nova_mensagem = {"chat_id" : chat_id, "text" : "Não entendi. Escreva 'oi' ou 'olá' para ver as instruções."}
 

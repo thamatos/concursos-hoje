@@ -3,6 +3,7 @@ import os
 import gspread
 import requests
 import pandas as pd
+import numpy as np
 from flask import Flask, request, render_template
 from oauth2client.service_account import ServiceAccountCredentials
 from tchan import ChannelScraper

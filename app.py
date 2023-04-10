@@ -62,7 +62,7 @@ def estagio():
 
 ## Função para adicionar o chat_id do usuário à planilha do Google Sheets
 usuarios = sheet.col_values(1)
-def adicionar_chat_id():
+def adicionar_chat_id(chat_id):
   if chat_id not in usuarios:
     sheet.insert_row([chat_id], 2)
 
@@ -87,7 +87,7 @@ def telegram_bot():
   elif message.lower().strip() in lista_saida:
     nova_mensagem = {"chat_id" : chat_id, "text" : "Que isso! Até a próxima :)"}
   elif message == "0":
-    adicionar_chat_id()
+    adicionar_chat_id(chat_id)
     if chat_id in usuarios:
       nova_mensagem = {"chat_id" : chat_id, "text" : "Você já está cadastrado nossa lista de envios semanais :)"}
     else:

@@ -74,7 +74,7 @@ def telegram_bot():
     texto_mensagem = "Não entendi. Escreva 'oi' ou 'olá' para ver as instruções."
   nova_mensagem = {"chat_id" : chat_id, "text" : texto_mensagem}
   resposta = requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
-  pint(resposta.text)
+  print(resposta.text)
   return "ok"
 
 

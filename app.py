@@ -61,13 +61,13 @@ def estagio():
 
 ## Função para adicionar o chat_id do usuário à planilha do Google Sheets
 sheet = planilha.worksheet("usuarios")
-usuarios = sheet.findall(str(chat_id))
 
 ## Criar a resposta do Telegram
 @app.route("/telegram-bot", methods=["POST"])
 def telegram_bot():
   update = request.json
   chat_id = update["message"]["chat"]["id"]
+  usuarios = sheet.findall(str(chat_id))
   message = update["message"]["text"]
   lista_entrada = ["/start", "oi", "ola", "olá", "bom dia", "boa tarde", "boa noite"]
   lista_saida = ["obrigado", "obrigada", "valeu", "muito obrigado", "muito obrigada"]

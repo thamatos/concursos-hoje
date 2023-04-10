@@ -87,7 +87,7 @@ def telegram_bot():
     if len(usuarios) >= 1:
       texto_mensagem = "Você já está cadastrado nossa lista de envios semanais :)"
       sheet.append_row(chat_id)
-     else: 
+    else: 
       texto_mensagem = "Você foi adicionado à nossa lista de envios semanais :)" 
   else:
     texto_mensagem = {"chat_id" : chat_id, "text" : "Não entendi. Escreva 'oi' ou 'olá' para ver as instruções."}

@@ -3,14 +3,11 @@ import os
 import gspread
 import requests
 import pandas as pd
-import numpy as np
-import datetime 
 from flask import Flask, request, render_template
 from oauth2client.service_account import ServiceAccountCredentials
 from tchan import ChannelScraper
 from bs4 import BeautifulSoup
 from pandas import DataFrame
-from datetime import date
 
 ## importar as funções de raspar concursos e automatizar textos
 from funcoes_concursos import raspa_concursos, automatiza_bot1, automatiza_bot2, automatiza_bot3, automatiza_site, automatiza_reserva, automatiza_estagio
@@ -64,7 +61,10 @@ def estagio():
 
 ## Função para adicionar o chat_id do usuário à planilha do Google Sheets
 def adicionar_chat_id(chat_id):
+  if chat_id not in sheet.col_values(1):
     sheet.insert_row([chat_id], 2)
+  else:
+    pass
 
 ## Criar a resposta do Telegram
 @app.route("/telegram-bot", methods=["POST"])

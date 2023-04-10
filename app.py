@@ -61,7 +61,7 @@ def estagio():
 
 ## Função para adicionar o chat_id do usuário à planilha do Google Sheets
 sheet = planilha.worksheet("usuarios")
-usuarios = sheet.col_values(1)
+usuarios = sheet.findall(str(chat_id))
 
 ## Criar a resposta do Telegram
 @app.route("/telegram-bot", methods=["POST"])

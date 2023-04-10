@@ -6,7 +6,6 @@ import pandas as pd
 import numpy as np
 from flask import Flask, request, render_template
 from oauth2client.service_account import ServiceAccountCredentials
-from tchan import ChannelScraper
 from bs4 import BeautifulSoup
 from pandas import DataFrame
 
@@ -90,11 +89,10 @@ def telegram_bot():
       sheet.append_row(chat_id)
       texto_mensagem = "Você foi adicionado à nossa lista de envios semanais :)" 
   else:
-    texto_mensagem = {"chat_id" : chat_id, "text" : "Não entendi. Escreva 'oi' ou 'olá' para ver as instruções."}
+    texto_mensagem = "Não entendi. Escreva 'oi' ou 'olá' para ver as instruções."
 
   nova_mensagem = {"chat_id" : chat_id, "text" : texto_mensagem}
   resposta = requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
-  print(resposta.text)
   return "ok"
 
 

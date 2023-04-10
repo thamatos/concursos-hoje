@@ -48,9 +48,6 @@ def estagio():
 
 ## telegram
 
-## Função para adicionar o chat_id do usuário à planilha do Google Sheets
-sheet = planilha.worksheet("usuarios")
-
 ## Criar a resposta do Telegram
 @app.route("/telegram-bot", methods=["POST"])
 def telegram_bot():

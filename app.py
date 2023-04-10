@@ -77,31 +77,24 @@ def telegram_bot():
   nova_mensagem = ' '
 
   if message.lower().strip() in lista_entrada:
-    nova_mensagem = {"chat_id" : chat_id, "text" : """
-    Oi, seja muito bem-vindo(a) ao Bot do Concurso Público do site PCI Concursos! \n Escolha uma das opções abaixo: 
-    \n - Digite 1 para saber quantos concursos e quantas vagas estão abertos hoje; 
-    \n - Digite 2 para saber quantos concursos oferecem cadastro reserva; 
-    \n - Digite 3 para ver os editais de estágio abertos;
-    \n - Digite 0 para ser adicionado ao envio de resumos semanais.
-    """}
-    elif message == "1":
-        nova_mensagem = {"chat_id" : chat_id, "text" : f'{mensagem_bot1}'}
-    elif message == "2":
-        nova_mensagem = {"chat_id" : chat_id, "text" : f'{mensagem_bot2}'}
-    elif message == "3":
-        nova_mensagem = {"chat_id" : chat_id, "text" : f'{mensagem_bot3}'}
-    elif message.lower().strip() in lista_saida:
-        nova_mensagem = {"chat_id" : chat_id, "text" : "Que isso! Até a próxima :)"}
-    elif message == "0":
-        adicionar_chat_id(chat_id)
-        nova_mensagem = {"chat_id" : chat_id, "text" : "Você foi adicionado ao envio de resumos semanais!"}
-    else:
-        nova_mensagem = {"chat_id" : chat_id, "text" : "Não entendi. Escreva 'oi' ou 'olá' para ver as instruções."}
+    nova_mensagem = {"chat_id" : chat_id, "text" : "Oi, seja muito bem-vindo(a) ao Bot do Concurso Público do site PCI Concursos! \n Escolha uma das opções abaixo: \n - Digite 1 para saber quantos concursos e quantas vagas estão abertos hoje; \n - Digite 2 para saber quantos concursos oferecem cadastro reserva; \n - Digite 3 para ver os editais de estágio abertos; \n - Digite 0 para ser adicionado ao envio de resumos semanais."}
+  elif message == "1":
+    nova_mensagem = {"chat_id" : chat_id, "text" : f'{mensagem_bot1}'}
+  elif message == "2":
+    nova_mensagem = {"chat_id" : chat_id, "text" : f'{mensagem_bot2}'}
+  elif message == "3":
+    nova_mensagem = {"chat_id" : chat_id, "text" : f'{mensagem_bot3}'}
+  elif message.lower().strip() in lista_saida:
+    nova_mensagem = {"chat_id" : chat_id, "text" : "Que isso! Até a próxima :)"}
+  elif message == "0":
+    adicionar_chat_id(chat_id)
+    nova_mensagem = {"chat_id" : chat_id, "text" : "Você foi adicionado ao envio de resumos semanais!"}
+  else:
+    nova_mensagem = {"chat_id" : chat_id, "text" : "Não entendi. Escreva 'oi' ou 'olá' para ver as instruções."}
 
-   resposta = requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
-    print(resposta.text)
-
-   return "ok"
+  resposta = requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
+  print(resposta.text)
+  return "ok"
 
 
 

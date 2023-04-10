@@ -2,9 +2,7 @@ flask
 gunicorn
 tchan
 requests
-gspread
 oauth2client
 bs4
 pandas
 numpy
-datetime

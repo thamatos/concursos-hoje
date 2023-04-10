@@ -1,11 +1,9 @@
 ##importar as bibliotecas
 import os
-import gspread
 import requests
 import pandas as pd
 import numpy as np
 from flask import Flask, request, render_template
-from oauth2client.service_account import ServiceAccountCredentials
 from bs4 import BeautifulSoup
 from pandas import DataFrame
 
@@ -18,14 +16,6 @@ mensagem_bot3 = automatiza_bot3()
 ## preparando a integração com o telegram
 TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
 TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
-
-## preparando a integração com o sheets
-GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
-with open("credenciais.json", mode="w") as arquivo:
-  arquivo.write(GOOGLE_SHEETS_CREDENTIALS)
-conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
-api = gspread.authorize(conta)
-planilha = api.open_by_key("1iJivj5y2pbfHpMR9C2CuPXIqNT9Wxa6Q06VjDxuRraA")
 
 ##configurando o flask e preparando o site
 app = Flask(__name__)
@@ -71,7 +61,7 @@ def telegram_bot():
   lista_saida = ["obrigado", "obrigada", "valeu", "muito obrigado", "muito obrigada"]
   nova_mensagem = ' '
   if message.lower().strip() in lista_entrada:
-    texto_mensagem = "Oi, seja muito bem-vindo(a) ao Bot do Concurso Público do site PCI Concursos! \n Escolha uma das opções abaixo: \n - Digite 1 para saber quantos concursos e quantas vagas estão abertos hoje; \n - Digite 2 para saber quantos concursos oferecem cadastro reserva; \n - Digite 3 para ver os editais de estágio abertos; \n - Digite 0 para ser adicionado ao envio de resumos semanais."
+    texto_mensagem = "Oi, seja muito bem-vindo(a) ao Bot do Concurso Público do site PCI Concursos! \n Escolha uma das opções abaixo: \n - Digite 1 para saber quantos concursos e quantas vagas estão abertos hoje; \n - Digite 2 para saber quantos concursos oferecem cadastro reserva; \n - Digite 3 para ver os editais de estágio abertos."
   elif message == "1":
     texto_mensagem = f'{mensagem_bot1}'
   elif message == "2":
@@ -80,13 +70,6 @@ def telegram_bot():
     texto_mensagem = f'{mensagem_bot3}'
   elif message.lower().strip() in lista_saida:
     texto_mensagem = "Que isso! Até a próxima :)"
-  elif message == "0":
-    usuarios = sheet.findall(str(chat_id))
-    if len(usuarios) >= 1:
-      texto_mensagem = "Você já está cadastrado nossa lista de envios semanais :)"
-    else:
-      sheet.append_row(chat_id)
-      texto_mensagem = "Você foi adicionado à nossa lista de envios semanais :)" 
   else:
     texto_mensagem = "Não entendi. Escreva 'oi' ou 'olá' para ver as instruções."
   nova_mensagem = {"chat_id" : chat_id, "text" : texto_mensagem}

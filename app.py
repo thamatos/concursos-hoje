@@ -82,7 +82,7 @@ def telegram_bot():
     texto_mensagem = f'{mensagem_bot3}'
   elif message.lower().strip() in lista_saida:
     texto_mensagem = "Que isso! Até a próxima :)"
-  elif message == "0"
+  elif message == "0":
     usuarios = sheet.findall(str(chat_id))
     if len(usuarios) >= 1:
       texto_mensagem = "Você já está cadastrado nossa lista de envios semanais :)"

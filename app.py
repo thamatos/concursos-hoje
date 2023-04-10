@@ -90,9 +90,9 @@ def telegram_bot():
   elif message == "0":
     adicionar_chat_id(chat_id)
     if chat_id in usuarios:
-      nova_mensagem = {"chat_id" : chat_id, "text" : "Você já está cadastrado nossa lista de envios semanais :)}
+      nova_mensagem = {"chat_id" : chat_id, "text" : "Você já está cadastrado nossa lista de envios semanais :)"}
     else:
-      nova_mensagem = {"chat_id" : chat_id, "text" : "Você foi adicionado à nossa lista de envios semanais :)}  
+      nova_mensagem = {"chat_id" : chat_id, "text" : "Você foi adicionado à nossa lista de envios semanais :)"}  
   else:
     nova_mensagem = {"chat_id" : chat_id, "text" : "Não entendi. Escreva 'oi' ou 'olá' para ver as instruções."}
 

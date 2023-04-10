@@ -1,6 +1,5 @@
 flask
 gunicorn
-tchan
 requests
 oauth2client
 bs4

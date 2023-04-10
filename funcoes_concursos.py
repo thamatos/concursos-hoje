@@ -75,7 +75,7 @@ num_abertos = len(concursos_abertos)
 num_estagios = len(estagios)
 vagas_abertos = concursos_abertos['Vagas'].sum() 
 estagios_abertos = estagios['Vagas'].sum()
-links_abertos = concursos_abertos["Link"].reset_index(drop=True)
+links_abertos = concursos_abertos.reset_index(drop=True)["Link"].values
 links_reserva = cadastro_reserva["Link"].reset_index(drop=True)
 links_estagios = estagios["Link"].reset_index(drop=True)
 

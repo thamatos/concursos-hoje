@@ -55,13 +55,13 @@ num_policia = len(policia)
 num_superior = len(superior)
 
 # amostra de links
-links_aberto = aberto.sample(n=5, replace=False).sort_values(by='vagas', ascending=False)['link']
-links_aguardando = aguardando.sample(n=2, replace=False).sort_values(by='vagas', ascending=False)['link']
-links_publicado = publicado.sample(n=5, replace=False).sort_values(by='vagas', ascending=False)['link']
-links_prefeituras = prefeituras.sample(n=2, replace=False).sort_values(by='vagas', ascending=False)['link']
-links_forcas = forcas_armadas.sample(n=2, replace=False).sort_values(by='vagas', ascending=False)['link']
-links_policia = policia.sample(n=2, replace=False).sort_values(by='vagas', ascending=False)['link']
-links_superior = superior.sample(n=2, replace=False).sort_values(by='vagas', ascending=False)['link']
+links_aberto = aberto.sample(n=5, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
+links_aguardando = aguardando.sample(n=2, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
+links_publicado = publicado.sample(n=5, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
+links_prefeituras = prefeituras.sample(n=2, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
+links_forcas = forcas_armadas.sample(n=2, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
+links_policia = policia.sample(n=2, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
+links_superior = superior.sample(n=2, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
 
 # concursos abertos com o maior salário e o maior número de vagas
 maior_salario = planilha['salario'].max()

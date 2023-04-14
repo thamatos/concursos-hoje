@@ -1,8 +1,11 @@
-flask
-gunicorn
-requests
-oauth2client
 bs4
-pandas
-numpy
+flask
 gspread
+gunicorn
+numpy
+oauth2client
+os
+pandas
+python-telegram-bot
+requests
+sendgrid

@@ -8,7 +8,6 @@ from flask import Flask, request, render_template
 from oauth2client.service_account import ServiceAccountCredentials
 from bs4 import BeautifulSoup
 from pandas import DataFrame
-from python-telegram-bot import ParseMode
 
 from funcoes_g1 import bot1, bot2, bot3, prefeitura, policia, forcas, superior
 mensagem1 = bot1()

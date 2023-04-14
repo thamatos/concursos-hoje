@@ -69,17 +69,17 @@ def telegram_bot():
   if message.lower().strip() in lista_entrada:
     texto_mensagem = f"""
     Oi, {nome} seja muito bem-vindo(a) ao Bot de Concursos Públicos do g1! 
-    \n {chr(0x1F4DA)}Escolha uma das opções abaixo:
-    <b>Digite 1 para saber quantos concursos e quantas vagas estão abertos hoje;</b>
-    <b>Digite 2 para saber quantos editais estão publicados, mas as inscrições ainda não abriram;</b>
-    <b>Digite 3 para ver os concursos que já foram anunciados, mas ainda não têm editais;</b>
+    \n Escolha uma das opções abaixo:
+    \n - Digite 1 para saber quantos concursos e quantas vagas estão abertos hoje;
+    \n - Digite 2 para saber quantos editais estão publicados, mas as inscrições ainda não abriram;
+    \n - Digite 3 para ver os concursos que já foram anunciados, mas ainda não têm editais;
     """
  
   elif message == "1":
     texto_mensagem = '''Ótimo, temos uma lista com todos os concursos abertos, mas também uma divisão por categorias. 
     \n Digite qual das opções você prefere:
-    <b>lista inteira</b>
-    <b>categorias</b>
+    \n - lista inteira
+    \n - categorias
     '''
  
   elif message == "\lista inteira":
@@ -87,11 +87,11 @@ def telegram_bot():
 
   elif message == "\categorias":
     texto_mensagem = '''
-    Beleza, então essas são as categorias disponíveis. Digite qual delas quer acessar: \n
-    <b>polícia</b>
-    <b>forças armadas</b>
-    <b>prefeituras</b>
-    <b>ensino superior</b>
+    Beleza, então essas são as categorias disponíveis. Digite qual delas quer acessar:
+    \n - polícia
+    \n - forças armadas
+    \n - prefeituras
+    \n - ensino superior
     '''
         
   elif message == "prefeituras":

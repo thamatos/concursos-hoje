@@ -6,4 +6,3 @@ bs4
 pandas
 numpy
 gspread
-python-telegram-bot

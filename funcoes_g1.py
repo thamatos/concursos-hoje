@@ -17,7 +17,6 @@ tabela = api.open_by_key("1iJivj5y2pbfHpMR9C2CuPXIqNT9Wxa6Q06VjDxuRraA").workshe
 dados = tabela.get_all_values()
 planilha = pd.DataFrame(dados[1:], columns=dados[0])
 
-
 ## tratar colunas vagas e salário pra transformar em valores numéricos
 planilha['vagas'] = planilha['vagas'].replace('', 0)
 planilha['vagas'] = planilha['vagas'].astype(int)
@@ -74,48 +73,43 @@ mais_vagas = planilha['vagas'].max()
 ## funcoes de resposta do telegram
 
 def bot1():
-  mensagem_bot = f'Pelo menos {num_aberto} concursos públicos estão com inscrições abertas hoje. Juntos, eles oferecem {vagas_aberto} vagas.'
-  lista_mensagem = f'Veja os concursos abertos nos links abaixo: {links_aberto}'
-  g1 = 'Para saber mais e ver todos os concursos abertos, é só entrar na página especial do g1'
-  return(mensagem_bot + lista_mensagem + g1)
+  mensagem_bot = f'Pelo menos <b>{num_aberto}</b> concursos públicos estão com inscrições abertas hoje. \nJuntos, eles oferecem <b>{vagas_aberto}</b> vagas.'
+  lista_mensagem = f'{chr(0x1F4DA)} Veja os maiores nos links abaixo: {links_aberto}'
+  g1 = f'{chr(0x1F4A1)} Para saber mais e ver todos os concursos abertos, é só entrar na <a href="https://especiais.g1.globo.com/economia/concursos-e-emprego/lista-de-concursos-publicos-e-vagas-de-emprego/">página especial do g1</a>.'
+  return (mensagem_bot + '\n' + lista_mensagem + '\n' + g1)
 
 def bot2():
-  mensagem_bot = f'Pelo menos {num_aguardando} concursos públicos foram anunciados, mas ainda aguardam edital.'
-  lista_mensagem = f'Selecionamos os mais importantes na lista abaixo: {links_aguardando}'
-  g1 = 'Para saber mais e ver todos os concursos abertos, é só entrar na página especial do g1'
-  return(mensagem_bot + lista_mensagem + g1)
+  mensagem_bot = f'Pelo menos <b>{num_aguardando}</b> concursos públicos foram anunciados, mas ainda aguardam edital.'
+  lista_mensagem = f'{chr(0x1F4DA)} Veja os principais nos links abaixo: {links_aguardando}'
+  g1 = f'{chr(0x1F4A1)} Para saber mais e ver todos os concursos abertos, é só entrar na <a href="https://especiais.g1.globo.com/economia/concursos-e-emprego/lista-de-concursos-publicos-e-vagas-de-emprego/">página especial do g1</a>.'
+  return (mensagem_bot + '\n' + lista_mensagem + '\n' + g1)
 
-def bot3():
-  mensagem_bot = f'''Pelo menos {num_publicado} editais estão estão publicados, mas as inscrições ainda não começaram. 
-  Juntos, eles oferecem {vagas_publicado} vagas.'''
-  lista_mensagem = f'Veja os concursos abertos nos links abaixo: {links_publicado}'
-  g1 = 'Para saber mais, é só entrar na página especial do g1'
-  return(mensagem_bot + lista_mensagem + g1)
+def bot3(): 
+  mensagem_bot = f'Pelo menos <b>{num_publicado}</b> ceditais estão estão publicados, mas as inscrições ainda não começaram. \nJuntos, eles oferecem <b>{vagas_publicado}</b> vagas.'
+  lista_mensagem = f'{chr(0x1F4DA)} Veja os maiores nos links abaixo: {links_publicado}'
+  g1 = f'{chr(0x1F4A1)} Para saber mais e ver todos os concursos abertos, é só entrar na <a href="https://especiais.g1.globo.com/economia/concursos-e-emprego/lista-de-concursos-publicos-e-vagas-de-emprego/">página especial do g1</a>.'
+  return (mensagem_bot + '\n' + lista_mensagem + '\n' + g1)
 
 def prefeitura():
-  mensagem_bot = f'''Pelo menos {num_prefeituras} concursos públicos estão com inscrições abertas hoje no site PCI Concursos. 
-  Juntos, eles oferecem {vagas_prefeituras} vagas.'''
-  lista_mensagem = f'Veja os concursos abertos nos links abaixo: {links_prefeituras}'
-  g1 = 'Para saber mais e ver todos os concursos abertos, é só entrar na página especial do g1'
-  return(mensagem_bot + lista_mensagem + g1)
+  mensagem_bot = f'Pelo menos <b>{num_prefeituras}</b> editais estão com inscrições abertas para <u>prefeituras</u> em todo o Brasil. \nJuntos, eles oferecem <b>{vagas_prefeituras}</b> vagas.'
+  lista_mensagem = f'{chr(0x1F4DA)} Veja os concursos abertos nos links abaixo: {links_prefeituras}'
+  g1 = f'Para saber mais e ver todos os concursos abertos, é só entrar na <a href="https://especiais.g1.globo.com/economia/concursos-e-emprego/lista-de-concursos-publicos-e-vagas-de-emprego/">página especial do g1</a>.'
+  return (mensagem_bot + '\n' + lista_mensagem + '\n' + g1)
 
 def policia():
-  mensagem_bot = f'''Pelo menos {num_policia} concursos públicos estão com inscrições abertas hoje no site PCI Concursos. 
-  Juntos, eles oferecem {vagas_policia} vagas.'''
-  lista_mensagem = f'Veja os concursos abertos nos links abaixo: {links_policia}'
-  g1 = 'Para saber mais e ver todos os concursos abertos, é só entrar na página especial do g1'
-  return(mensagem_bot + lista_mensagem + g1)
+  mensagem_bot = f'Pelo menos <b>{num_policia}</b> concursos públicos estão com inscrições abertas para a <u>polícia</u> em todo o Brasil. \nJuntos, eles oferecem <b>{vagas_policia}</b> vagas.'
+  lista_mensagem = f'{chr(0x1F4DA)} Veja os maiores nos links abaixo: {links_policia}'
+  g1 = f'Para saber mais e ver todos os concursos abertos, é só entrar na <a href="https://especiais.g1.globo.com/economia/concursos-e-emprego/lista-de-concursos-publicos-e-vagas-de-emprego/">página especial do g1</a>.'
+  return (mensagem_bot + '\n' + lista_mensagem + '\n' + g1)
 
 def forcas():
-  mensagem_bot = f'''Pelo menos {num_forcas} concursos públicos estão com inscrições abertas hoje. 
-  Juntos, eles oferecem {vagas_forcas} vagas.'''
-  lista_mensagem = f'Veja os concursos abertos nos links abaixo: {links_forcas}'
-  g1 = 'Para saber mais e ver todos os concursos abertos, é só entrar na página especial do g1'
-  return(mensagem_bot + lista_mensagem + g1)
+  mensagem_bot = f'Pelo menos <b>{num_forcas}</b> concursos públicos estão com inscrições abertas para as <u>Forças Armadas<u/>. \nJuntos, eles oferecem <b>{vagas_forcas}</b> vagas.'
+  lista_mensagem = f'{chr(0x1F4DA)} Veja os maiores nos links abaixo: {links_forcas}'
+  g1 = f'Para saber mais e ver todos os concursos abertos, é só entrar na <a href="https://especiais.g1.globo.com/economia/concursos-e-emprego/lista-de-concursos-publicos-e-vagas-de-emprego/">página especial do g1</a>.'
+  return (mensagem_bot + '\n' + lista_mensagem + '\n' + g1)
 
 def superior():
-  mensagem_bot = f'''Pelo menos {num_superior} concursos públicos estão com inscrições abertas hoje. 
-  Juntos, eles oferecem {vagas_superior} vagas.'''
-  lista_mensagem = f'Veja os concursos abertos nos links abaixo: {links_superior}'
-  g1 = 'Para saber mais e ver todos os concursos abertos, é só entrar na página especial do g1'
-  return(mensagem_bot + lista_mensagem + g1)
+  mensagem_bot = f'Pelo menos <b>{num_superior}</b> concursos públicos estão com inscrições abertas para <b>{vagas_superior}</b> vagas de <u>ensino superior</u>.'
+  lista_mensagem = f'{chr(0x1F4DA)} Veja os cmaiores nos links abaixo: {links_superior}'
+  g1 = f'Para saber mais e ver todos os concursos abertos, é só entrar na <a href="https://especiais.g1.globo.com/economia/concursos-e-emprego/lista-de-concursos-publicos-e
+  return (mensagem_bot + '\n' + lista_mensagem + '\n' + g1)

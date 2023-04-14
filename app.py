@@ -68,7 +68,7 @@ def telegram_bot():
   
   if message.lower().strip() in lista_entrada:
     texto_mensagem = f"""
-    Oi, {nome} seja muito bem-vindo(a) ao <br>Bot de Concursos Públicos</br> do g1! 
+    Oi, {nome} seja muito bem-vindo(a) ao Bot de Concursos Públicos do g1! 
     \n {chr(0x1F4DA)}Escolha uma das opções abaixo:
     <ul>
       <li>Digite 1 para saber quantos concursos e quantas vagas estão abertos hoje;</li>

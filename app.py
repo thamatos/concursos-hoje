@@ -117,9 +117,9 @@ def telegram_bot():
   else:
     texto_mensagem = "Não entendi. Aperte o botão \menu para voltar e ver as instruções."
     
-  nova_mensagem = {"chat_id" : chat_id, "text" : texto_mensagem}
+  nova_mensagem = {"chat_id" : chat_id, "text" : texto_mensagem,  "parse_mode" : 'HTML'}
   
-  resposta = requests.post(f"https://api.telegram.org/bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem, parse_mode=ParseMode.HTML)
+  resposta = requests.post(f"https://api.telegram.org/bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
   
   print(resposta.text)
   return "ok"

@@ -18,6 +18,10 @@ mensagem5 = policia()
 mensagem6 = forcas()
 mensagem7 = superior()
 
+## preparando a integração com o telegram
+TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
+TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
+
 ##configurando o flask e preparando o site
 app = Flask(__name__)
 

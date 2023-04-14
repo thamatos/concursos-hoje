@@ -2,7 +2,6 @@ import os
 import gspread
 import requests
 import pandas as pd
-import sendgrid
 from pandas import DataFrame
 from sendgrid.helpers.mail import Mail, Email, To, Content
 from oauth2client.service_account import ServiceAccountCredentials

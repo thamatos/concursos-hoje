@@ -67,32 +67,40 @@ def telegram_bot():
   nova_mensagem = ' '
   
   if message.lower().strip() in lista_entrada:
-    texto_mensagem = f""""
-    Oi, {nome} seja muito bem-vindo(a) ao Bot de Concursos públicos do g1! 
-    \n Escolha uma das opções abaixo: 
-    \n - Digite 1 para saber quantos concursos e quantas vagas estão abertos hoje; 
-    \n - Digite 2 para saber quantos editais estão publicados, mas as incrições ainda não abriram; 
-    \n - Digite 3 para ver os concursos que já foram anunciados, mas ainda não têm editais;
+    texto_mensagem = f"""
+    Oi, {nome} seja muito bem-vindo(a) ao <br>Bot de Concursos Públicos</br> do g1! 
+    \n {chr(0x1F4DA)}Escolha uma das opções abaixo:
+    <ul>
+      <li>Digite 1 para saber quantos concursos e quantas vagas estão abertos hoje;</li>
+      <li>Digite 2 para saber quantos editais estão publicados, mas as inscrições ainda não abriram;</li>
+      <li>Digite 3 para ver os concursos que já foram anunciados, mas ainda não têm editais;</li>
+    </ul>
     """
  
   elif message == "1":
     texto_mensagem = '''Ótimo, temos uma lista com todos os concursos abertos, mas também uma divisão por categorias. 
-    \n O que você prefere?
-    \n lista inteira
-    \n categorias
-  '''
+    \n Digite qual das opções você prefere:
+    <ul>
+      <li>lista inteira</li>
+      <li>categorias</li>
+    </ul>
+    '''
  
   elif message == "\lista inteira":
     texto_mensagem = f'{mensagem1} \n Se quiser fazer outras consultas, é só digitar menu'
 
   elif message == "\categorias":
     texto_mensagem = '''
-    Beleza, então essas são as categorias disponíveis. Digite qual delas quer acessar:
-    \n prefeituras
-    \n forças amardas
-    \n polícia
-    \n ensino superior
+    Beleza, então essas são as categorias disponíveis. Digite qual delas quer acessar: \n
+     <ul>
+      <li>polícia</li>
+      <li>forças armadas</li>
+      <li>prefeituras</li>
+      <li>ensino superior</li>
+     </ul>
     '''
+    
+    
   elif message == "prefeituras":
      texto_mensagem = f' {mensagem4} \n Se quiser fazer outras consultas, é só digitar menu'
 
@@ -102,7 +110,7 @@ def telegram_bot():
   elif message == "polícia":
     texto_mensagem = f'  {mensagem5} \n Se quiser fazer outras consultas, é só digitar menu'
 
-  elif message == "superior":
+  elif message == "ensino superior":
     texto_mensagem = f' {mensagem7} \n Se quiser fazer outras consultas, é só digitar menu'
   
   elif message == "2":

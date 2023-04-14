@@ -110,5 +110,5 @@ def forcas():
 def superior():
   mensagem_bot = f'Pelo menos <b>{num_superior}</b> concursos públicos estão com inscrições abertas para <b>{vagas_superior}</b> vagas de <u>ensino superior</u>.'
   lista_mensagem = f'{chr(0x1F4DA)} Veja os cmaiores nos links abaixo: {links_superior}'
-  g1 = f'Para saber mais e ver todos os concursos abertos, é só entrar na <a href="https://especiais.g1.globo.com/economia/concursos-e-emprego/lista-de-concursos-publicos-e
+  g1 = f'Para saber mais e ver todos os concursos abertos, é só entrar na <a href="https://especiais.g1.globo.com/economia/concursos-e-emprego/lista-de-concursos-publicos-e-vagas-de-emprego/">página especial do g1</a>.'
   return (mensagem_bot + '\n' + lista_mensagem + '\n' + g1)

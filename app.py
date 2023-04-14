@@ -73,9 +73,9 @@ def telegram_bot():
  
   elif message == "1":
     texto_mensagem = '''Ótimo, temos uma lista com todos os concursos abertos, mas também uma divisão por categorias. 
-    \n O que você prefere?
-    \n \lista inteira
-    \n \categorias
+    \n O que você prefere? Clique em um dos botões abaixo:
+    \n<button>lista inteira</button>
+    \n<button>categorias</button>
   '''
  
   elif message == "\lista inteira":
@@ -83,11 +83,11 @@ def telegram_bot():
 
   elif message == "\categorias":
     texto_mensagem = '''
-    Beleza, então essas são as categorias disponíveis:
-    \n prefeituras
-    \n forças armadas
-    \n polícia
-    \n superior
+    Beleza, então essas são as categorias disponíveis. Clique no botão desejado:
+    \n<button>prefeituras</button>
+    \n<button>forças amardas</button>
+    \n<button>polícia</button>
+    \n<button>ensino superior</button>
     '''
   elif message == "prefeituras":
      texto_mensagem = f' {mensagem4} \n Se quiser fazer outras consultas, é só digitar menu'
@@ -115,7 +115,7 @@ def telegram_bot():
     
   nova_mensagem = {"chat_id" : chat_id, "text" : texto_mensagem}
   
-  resposta = requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
+  resposta = requests.post(f"https://api.telegram.org/bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem, parse_mode=ParseMode.HTML)
   
   print(resposta.text)
   return "ok"

@@ -9,24 +9,14 @@ from oauth2client.service_account import ServiceAccountCredentials
 from bs4 import BeautifulSoup
 from pandas import DataFrame
 
-## importar as funções de raspar concursos e automatizar textos
-from funcoes_concursos import raspa_concursos, automatiza_bot1, automatiza_bot2, automatiza_bot3, automatiza_site, automatiza_reserva, automatiza_estagio
-mensagem_bot1 = automatiza_bot1()
-mensagem_bot2 = automatiza_bot2()
-mensagem_bot3 = automatiza_bot3()
-
-## preparando a integração com o telegram
-TELEGRAM_API_KEY = os.environ["TELEGRAM_API_KEY"]
-TELEGRAM_ADMIN_ID = os.environ["TELEGRAM_ADMIN_ID"]
-
-## preparando a integração com o sheets
-GOOGLE_SHEETS_CREDENTIALS = os.environ["GOOGLE_SHEETS_CREDENTIALS"]
-with open("credenciais.json", mode="w") as arquivo:
-  arquivo.write(GOOGLE_SHEETS_CREDENTIALS)
-conta = ServiceAccountCredentials.from_json_keyfile_name("credenciais.json")
-api = gspread.authorize(conta)
-planilha = api.open_by_key("1iJivj5y2pbfHpMR9C2CuPXIqNT9Wxa6Q06VjDxuRraA")
-sheet = planilha.worksheet("usuarios")
+from funcoes_g1 import bot1, bot2, bot3, prefeitura, policia, forcas, superior
+mensagem1 = bot1()
+mensagem2 = bot2()
+mensagem3 = bot3()
+mensagem4 = prefeitura()
+mensagem5 = policia()
+mensagem6 = forcas()
+mensagem7 = superior()
 
 ##configurando o flask e preparando o site
 app = Flask(__name__)
@@ -61,40 +51,71 @@ def estagio():
 
 ## Criar a resposta do Telegram
 @app.route("/telegram-bot", methods=["POST"])
+
 def telegram_bot():
   update = request.json
   chat_id = update["message"]["chat"]["id"]
+  nome = update["message"]["from"]["first_name"]
   message = update["message"]["text"]
   lista_entrada = ["/start", "oi", "ola", "olá", "bom dia", "boa tarde", "boa noite"]
-  lista_saida = ["obrigado", "obrigada", "valeu", "muito obrigado", "muito obrigada"]
+  lista_saida = ["obrigado", "obrigada", "valeu", "muito obrigado", "muito obrigada", "opa", "legal", "show", "bacana"]
+  
   nova_mensagem = ' '
+  
   if message.lower().strip() in lista_entrada:
-    texto_mensagem = "Oi, seja muito bem-vindo(a) ao Bot do Concurso Público do site PCI Concursos! \n Escolha uma das opções abaixo: \n - Digite 1 para saber quantos concursos e quantas vagas estão abertos hoje; \n - Digite 2 para saber quantos concursos oferecem cadastro reserva; \n - Digite 3 para ver os editais de estágio abertos; \n - Digite 4 para ser adicionado ao envio de resumos semanais."
+    texto_mensagem = f""""
+    Oi, {nome} seja muito bem-vindo(a) ao Bot de Concursos públicos do g1! 
+    \n Escolha uma das opções abaixo: 
+    \n - Digite 1 para saber quantos concursos e quantas vagas estão abertos hoje; 
+    \n - Digite 2 para saber quantos editais estão publicados, mas as incrições ainda não abriram; 
+    \n - Digite 3 para ver os concursos que já foram anunciados, mas ainda não têm editais;
+    """
+ 
   elif message == "1":
-    texto_mensagem = f'{mensagem_bot1}'
+    texto_mensagem = '''Ótimo, temos uma lista com todos os concursos abertos, mas também uma divisão por categorias. 
+    \n O que você prefere?
+    \n \lista inteira
+    \n \categorias
+  '''
+ 
+  elif message == "\lista inteira":
+    texto_mensagem = f'{mensagem1} \n Se quiser fazer outras consultas, é só digitar menu'
+
+  elif message == "\categorias":
+    texto_mensagem = '''
+    Beleza, então essas são as categorias disponíveis:
+    \n prefeituras
+    \n forças armadas
+    \n polícia
+    \n superior
+    '''
+  elif message == "prefeituras":
+     texto_mensagem = f' {mensagem4} \n Se quiser fazer outras consultas, é só digitar menu'
+
+  elif message == "forças armadas":
+     texto_mensagem = f'  {mensagem6} \n Se quiser fazer outras consultas, é só digitar menu' 
+
+  elif message == "polícia":
+    texto_mensagem = f'  {mensagem5} \n Se quiser fazer outras consultas, é só digitar menu'
+
+  elif message == "superior":
+    texto_mensagem = f' {mensagem7} \n Se quiser fazer outras consultas, é só digitar menu'
+  
   elif message == "2":
-    texto_mensagem = f'{mensagem_bot2}'
+    texto_mensagem = f'{mensagem2} \n Se quiser fazer outras consultas, é só digitar menu'
+  
   elif message == "3":
-    texto_mensagem = f'{mensagem_bot3}'
-  elif message == "4":
-    usuarios = sheet.findall(str(chat_id))
-    if len(usuarios) >= 1:
-      texto_mensagem = "Você já está cadastrado nossa lista de interessados em envios semanais :)"
-    else:
-      sheet.append_row([chat_id])
-      texto_mensagem = "Você foi adiconado à lista de interessados em envios semanais :)"
+    texto_mensagem = f'{mensagem3} \n Se quiser fazer outras consultas, é só digitar menu'
+  
   elif message.lower().strip() in lista_saida:
     texto_mensagem = "Que isso! Até a próxima :)"
+    
   else:
-    texto_mensagem = "Não entendi. Escreva 'oi' ou 'olá' para ver as instruções."
+    texto_mensagem = "Não entendi. Aperte o botão \menu para voltar e ver as instruções."
+    
   nova_mensagem = {"chat_id" : chat_id, "text" : texto_mensagem}
+  
   resposta = requests.post(f"https://api.telegram.org./bot{TELEGRAM_API_KEY}/sendMessage", data=nova_mensagem)
+  
   print(resposta.text)
   return "ok"
-
-
-
-
-
-
-

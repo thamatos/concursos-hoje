@@ -74,7 +74,7 @@ def telegram_bot():
  
   elif message == "1":
     texto_mensagem = '''Ótimo, temos uma lista com todos os concursos abertos, mas também uma divisão por categorias. 
-    \n O que você prefere? Clique em um dos botões abaixo:
+    \n O que você prefere?
     \n lista inteira
     \n categorias
   '''
@@ -84,7 +84,7 @@ def telegram_bot():
 
   elif message == "\categorias":
     texto_mensagem = '''
-    Beleza, então essas são as categorias disponíveis. Clique no botão desejado:
+    Beleza, então essas são as categorias disponíveis. Digite qual delas quer acessar:
     \n prefeituras
     \n forças amardas
     \n polícia

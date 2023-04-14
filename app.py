@@ -75,8 +75,8 @@ def telegram_bot():
   elif message == "1":
     texto_mensagem = '''Ótimo, temos uma lista com todos os concursos abertos, mas também uma divisão por categorias. 
     \n O que você prefere? Clique em um dos botões abaixo:
-    \n<button>lista inteira</button>
-    \n<button>categorias</button>
+    \n lista inteira
+    \n categorias
   '''
  
   elif message == "\lista inteira":
@@ -85,10 +85,10 @@ def telegram_bot():
   elif message == "\categorias":
     texto_mensagem = '''
     Beleza, então essas são as categorias disponíveis. Clique no botão desejado:
-    \n<button>prefeituras</button>
-    \n<button>forças amardas</button>
-    \n<button>polícia</button>
-    \n<button>ensino superior</button>
+    \n prefeituras
+    \n forças amardas
+    \n polícia
+    \n ensino superior
     '''
   elif message == "prefeituras":
      texto_mensagem = f' {mensagem4} \n Se quiser fazer outras consultas, é só digitar menu'

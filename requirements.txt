@@ -1,10 +1,9 @@
-bs4
 flask
-gspread
 gunicorn
-numpy
-oauth2client
-pandas
-telegram
 requests
-sendgrid
+oauth2client
+bs4
+pandas
+numpy
+gspread
+python-telegram-bot

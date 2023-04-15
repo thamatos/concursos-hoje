@@ -82,10 +82,10 @@ def telegram_bot():
     \n - categorias
     '''
  
-  elif message == "\lista inteira":
+  elif message == "lista inteira":
     texto_mensagem = f'{mensagem1} \n Se quiser fazer outras consultas, é só digitar menu'
 
-  elif message == "\categorias":
+  elif message == "categorias":
     texto_mensagem = '''
     Beleza, então essas são as categorias disponíveis. Digite qual delas quer acessar:
     \n - polícia

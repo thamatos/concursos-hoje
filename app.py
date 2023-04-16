@@ -61,8 +61,9 @@ def telegram_bot():
   chat_id = update["message"]["chat"]["id"]
   nome = update["message"]["from"]["first_name"]
   message = update["message"]["text"]
-  lista_entrada = ["/start", "oi", "ola", "olá", "bom dia", "boa tarde", "boa noite"]
+  lista_entrada = ["/start", "oi", "ola", "olá", "bom dia", "boa tarde", "boa noite", "menu"]
   lista_saida = ["obrigado", "obrigada", "valeu", "muito obrigado", "muito obrigada", "opa", "legal", "show", "bacana"]
+  
   
   nova_mensagem = ' '
   
@@ -76,16 +77,12 @@ def telegram_bot():
     """
  
   elif message == "1":
-    texto_mensagem = '''Ótimo, temos uma lista com todos os concursos abertos, mas também uma divisão por categorias. 
-    \n Digite qual das opções você prefere:
-    \n - lista inteira
-    \n - categorias
-    '''
+    texto_mensagem = "Ótimo, temos uma lista com todos os concursos abertos, mas também uma divisão por categorias. \n Digite qual das opções você prefere: \n - lista inteira \n - categorias"
  
-  elif message == "lista inteira":
+  elif message.lower().strip() == "lista inteira":
     texto_mensagem = f'{mensagem1} \n Se quiser fazer outras consultas, é só digitar menu'
 
-  elif message == "categorias":
+  elif message.lower().strip()  == "categorias":
     texto_mensagem = '''
     Beleza, então essas são as categorias disponíveis. Digite qual delas quer acessar:
     \n - polícia
@@ -94,13 +91,13 @@ def telegram_bot():
     \n - ensino superior
     '''
         
-  elif message == "prefeituras":
+  elif message.lower().strip()  == "prefeituras":
      texto_mensagem = f' {mensagem4} \n Se quiser fazer outras consultas, é só digitar menu'
 
-  elif message == "forças armadas":
+  elif message.lower().strip().replace("ç", "c") == "forcas armadas":
      texto_mensagem = f'  {mensagem6} \n Se quiser fazer outras consultas, é só digitar menu' 
 
-  elif message == "polícia":
+  elif message.lower().strip().replace("í", "i") == "policia":
     texto_mensagem = f'  {mensagem5} \n Se quiser fazer outras consultas, é só digitar menu'
 
   elif message == "ensino superior":
@@ -116,7 +113,7 @@ def telegram_bot():
     texto_mensagem = "Que isso! Até a próxima :)"
     
   else:
-    texto_mensagem = "Não entendi. Aperte o botão \menu para voltar e ver as instruções."
+    texto_mensagem = "Não entendi. Digite menu para voltar e ver as instruções."
     
   nova_mensagem = {"chat_id" : chat_id, "text" : texto_mensagem,  "parse_mode" : 'HTML'}
   

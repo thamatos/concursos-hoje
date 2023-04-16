@@ -69,11 +69,11 @@ def telegram_bot():
   
   if message.lower().strip() in lista_entrada:
     texto_mensagem = f"""
-    Oi, {nome} seja muito bem-vindo(a) ao Bot de Concursos Públicos do g1! 
+    Oi, {nome}, seja muito bem-vindo(a) ao Bot de Concursos Públicos do g1! 
     \n Escolha uma das opções abaixo:
     \n - Digite 1 para saber quantos concursos e quantas vagas estão abertos hoje;
     \n - Digite 2 para saber quantos editais estão publicados, mas as inscrições ainda não abriram;
-    \n - Digite 3 para ver os concursos que já foram anunciados, mas ainda não têm editais;
+    \n - Digite 3 para ver os concursos que já foram anunciados, mas ainda não têm editais.
     """
  
   elif message == "1":
@@ -94,7 +94,7 @@ def telegram_bot():
   elif message.lower().strip()  == "prefeituras":
      texto_mensagem = f' {mensagem4} \n Se quiser fazer outras consultas, é só digitar menu'
 
-  elif message.lower().strip().replace("ç", "c") == "forcas armadas":
+  elif message.lower().strip() in ["forças armadas", "forcas armadas"]:
      texto_mensagem = f'  {mensagem6} \n Se quiser fazer outras consultas, é só digitar menu' 
 
   elif message.lower().strip().replace("í", "i") == "policia":

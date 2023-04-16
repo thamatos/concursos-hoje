@@ -56,7 +56,7 @@ num_superior = len(superior)
 
 # amostra de links
 links_aberto = aberto.sample(n=10, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
-links_aguardando = aguardando.sample(n=5, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
+links_aguardando = aguardando.sample(n=2, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
 links_publicado = publicado.sample(n=10, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
 links_prefeituras = prefeituras.sample(n=10, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
 links_forcas = forcas_armadas.sample(n=2, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)

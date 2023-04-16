@@ -35,7 +35,6 @@ def index():
   texto = 'Veja as opções de editais com vagas abertas hoje:'
   return render_template('inicio.html', titulo=titulo, texto=texto)
 
-
 @app.route("/concursos")
 def concursos():
   texto_site = automatiza_site()
@@ -94,14 +93,14 @@ def telegram_bot():
   elif message.lower().strip()  == "prefeituras":
      texto_mensagem = f' {mensagem4} \n Se quiser fazer outras consultas, é só digitar menu'
 
-  elif message.lower().strip() in ["forças armadas", "forcas armadas"]:
+  elif message.lower().strip() == "forças armadas" or  message.lower().strip() == "forcas armadas":
      texto_mensagem = f'  {mensagem6} \n Se quiser fazer outras consultas, é só digitar menu' 
 
   elif message.lower().strip().replace("í", "i") == "policia":
     texto_mensagem = f'  {mensagem5} \n Se quiser fazer outras consultas, é só digitar menu'
 
   elif message == "ensino superior":
-    texto_mensagem = f' {mensagem7} \n Se quiser fazer outras consultas, é só digitar menu'
+    texto_mensagem = f' {mensagem7} \n Se quiser fazer outras consultas, é só digitar <b>menu</b>'
   
   elif message == "2":
     texto_mensagem = f'{mensagem2} \n Se quiser fazer outras consultas, é só digitar menu'

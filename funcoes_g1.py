@@ -63,6 +63,22 @@ links_forcas = forcas_armadas.sample(n=2, replace=False).sort_values(by='vagas',
 links_policia = policia.sample(n=2, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
 links_superior = superior.sample(n=2, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
 
+lista = [links_aberto, links_aguardando, links_publicado, links_prefeituras, links_forcas, links_policia, links_superior]
+lista_html = []
+for item in lista:
+  item = pd.DataFrame(item)  # convertendo para DataFrame
+  item_html = item.to_html(index=False)
+  lista_html.append(item_html)
+  
+links_aberto_html = lista_html[0]
+links_aguardando_html = lista_html[1]
+links_publicado_html = lista_html[2]
+links_prefeituras_html = lista_html[3]
+links_forcas_html = lista_html[3]
+links_policia_html = lista_html[4]
+links_superior_html = lista_html[5]
+
+
 # concursos abertos com o maior salário e o maior número de vagas
 maior_salario = planilha['salario'].max()
 mais_vagas = planilha['vagas'].max()
@@ -72,7 +88,7 @@ mais_vagas = planilha['vagas'].max()
 
 def bot1():
   mensagem_bot = f'Pelo menos <b>{num_aberto}</b> concursos públicos estão com inscrições abertas hoje. \nJuntos, eles oferecem <b>{vagas_aberto}</b> vagas.'
-  lista_mensagem = f'{chr(0x1F4DA)} Veja os maiores nos links abaixo: {links_aberto}'
+  lista_mensagem = f'{chr(0x1F4DA)} Veja os maiores nos links abaixo: {links_aberto_html}'
   g1 = f'{chr(0x1F4A1)} Para saber mais e ver todos os concursos abertos, é só entrar na <a href="https://especiais.g1.globo.com/economia/concursos-e-emprego/lista-de-concursos-publicos-e-vagas-de-emprego/">página especial do g1</a>.'
   return (mensagem_bot + '\n' + lista_mensagem + '\n' + g1)
 

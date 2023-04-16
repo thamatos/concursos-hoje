@@ -83,7 +83,7 @@ def bot2():
   return (mensagem_bot + '\n' + lista_mensagem + '\n' + g1)
 
 def bot3(): 
-  mensagem_bot = f'Pelo menos <b>{num_publicado}</b> ceditais estão estão publicados, mas as inscrições ainda não começaram. \nJuntos, eles oferecem <b>{vagas_publicado}</b> vagas.'
+  mensagem_bot = f'Pelo menos <b>{num_publicado}</b> editais estão estão publicados, mas as inscrições ainda não começaram. \nJuntos, eles oferecem <b>{vagas_publicado}</b> vagas.'
   lista_mensagem = f'{chr(0x1F4DA)} Veja os maiores nos links abaixo: {links_publicado}'
   g1 = f'{chr(0x1F4A1)} Para saber mais e ver todos os concursos abertos, é só entrar na <a href="https://especiais.g1.globo.com/economia/concursos-e-emprego/lista-de-concursos-publicos-e-vagas-de-emprego/">página especial do g1</a>.'
   return (mensagem_bot + '\n' + lista_mensagem + '\n' + g1)

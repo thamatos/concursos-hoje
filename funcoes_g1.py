@@ -55,13 +55,13 @@ num_policia = len(policia)
 num_superior = len(superior)
 
 # amostra de links
-links_aberto = aberto.sample(n=5, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
-links_aguardando = aguardando.sample(n=2, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
-links_publicado = publicado.sample(n=5, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
-links_prefeituras = prefeituras.sample(n=2, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
+links_aberto = aberto.sample(n=10, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
+links_aguardando = aguardando.sample(n=5, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
+links_publicado = publicado.sample(n=10, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
+links_prefeituras = prefeituras.sample(n=10, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
 links_forcas = forcas_armadas.sample(n=2, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
 links_policia = policia.sample(n=2, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
-links_superior = superior.sample(n=2, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
+links_superior = superior.sample(n=10, replace=False).sort_values(by='vagas', ascending=False)['link'].reset_index(drop=True)
 
 
 ## funcoes de resposta do telegram
@@ -86,7 +86,7 @@ def bot3():
 
 def prefeitura():
   mensagem_bot = f'Pelo menos <b>{num_prefeituras}</b> editais estão com inscrições abertas para <u>prefeituras</u> em todo o Brasil. \nJuntos, eles oferecem <b>{vagas_prefeituras}</b> vagas.'
-  lista_mensagem = f'{chr(0x1F4DA)} Veja os concursos abertos nos links abaixo: {links_prefeituras}'
+  lista_mensagem = f'{chr(0x1F4DA)} Veja os maiores nos links abaixo: {links_prefeituras}'
   g1 = f'{chr(0x1F4A1)} Para saber mais e ver todos os concursos abertos, é só entrar na <a href="https://especiais.g1.globo.com/economia/concursos-e-emprego/lista-de-concursos-publicos-e-vagas-de-emprego/">página especial do g1</a>.'
   return (mensagem_bot + '\n' + lista_mensagem + '\n' + g1)
 
@@ -104,6 +104,6 @@ def forcas():
 
 def superior():
   mensagem_bot = f'Pelo menos <b>{num_superior}</b> concursos públicos estão com inscrições abertas para <b>{vagas_superior}</b> vagas de <u>ensino superior</u>.'
-  lista_mensagem = f'{chr(0x1F4DA)} Veja os cmaiores nos links abaixo: {links_superior}'
+  lista_mensagem = f'{chr(0x1F4DA)} Veja os maiores nos links abaixo: {links_superior}'
   g1 = f'{chr(0x1F4A1)} Para saber mais e ver todos os concursos abertos, é só entrar na <a href="https://especiais.g1.globo.com/economia/concursos-e-emprego/lista-de-concursos-publicos-e-vagas-de-emprego/">página especial do g1</a>.'
   return (mensagem_bot + '\n' + lista_mensagem + '\n' + g1)
